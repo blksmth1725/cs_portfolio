@@ -9,7 +9,8 @@ export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -51,8 +52,13 @@ export default function LoginPage() {
     
     // Validation for signup
     if (isSignUp) {
-      if (!name.trim()) {
-        setError('Name is required');
+      if (!firstName.trim()) {
+        setError('First name is required');
+        setLoading(false);
+        return;
+      }
+      if (!lastName.trim()) {
+        setError('Last name is required');
         setLoading(false);
         return;
       }
@@ -71,7 +77,7 @@ export default function LoginPage() {
     try {
       const endpoint = isSignUp ? '/api/auth/signup' : '/api/auth/login';
       const payload = isSignUp 
-        ? { name, email, password }
+        ? { name: `${firstName} ${lastName}`, email, password }
         : { email, password };
 
       const response = await fetch(`http://localhost:5001${endpoint}`, {
@@ -140,21 +146,34 @@ export default function LoginPage() {
 
             {/* Sign Up only fields */}
             {(isSignUp || showSignupFields) && (
-              <div className={`form-group signup-field ${isTransitioning ? 'exiting' : ''}`}>
-                <label className="form-label">Name</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Enter your full name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required={isSignUp}
-                />
-              </div>
+              <>
+                <div className={`form-group signup-field ${isTransitioning ? 'exiting' : ''}`}>
+                  <label className="form-label">First Name</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="Enter your first name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required={isSignUp}
+                  />
+                </div>
+                <div className={`form-group signup-field ${isTransitioning ? 'exiting' : ''}`}>
+                  <label className="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="Enter your last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required={isSignUp}
+                  />
+                </div>
+              </>
             )}
             
             <div className="form-group">
-              <label className="form-label">Email{isSignUp ? '' : ' Address'}</label>
+              <label className="form-label">Email</label>
               <input
                 type="email"
                 className="form-input"

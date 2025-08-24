@@ -1,10 +1,50 @@
 /* Component Styles */
 
+/* App Layout */
+.app-layout {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: var(--header-height);
+  margin-bottom: var(--footer-height);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/* CSS Variables for header/footer heights */
+:root {
+  --header-height: 64px; /* 4rem */
+  --footer-height: 72px; /* Approximate footer height */
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px; /* Slightly smaller on mobile */
+    --footer-height: 68px;
+  }
+}
+
 /* Header Component */
 .header {
   background-color: white;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid #e5e7eb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
 }
 
 .header-container {
@@ -73,7 +113,12 @@
 .footer {
   background-color: #f9fafb;
   border-top: 1px solid #e5e7eb;
-  margin-top: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--footer-height);
 }
 
 .footer-container {
@@ -81,6 +126,10 @@
   margin-left: auto;
   margin-right: auto;
   padding: 1.5rem 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (min-width: 640px) {
@@ -106,7 +155,7 @@
 
 /* Protected Route Loading */
 .protected-route-loading {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
   background-color: #f9fafb;
   display: flex;
   align-items: center;

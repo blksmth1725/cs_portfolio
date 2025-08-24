@@ -31,12 +31,21 @@ router.post('/signup', async (req: Request, res: Response) => {
       const nameParts = name.trim().split(' ');
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || '';
-      const username = email.split('@')[0]; // Use email prefix as username
+      
+      // Create unique username by adding timestamp if needed
+      let username = email.split('@')[0];
+      
+      // Check if username already exists and make it unique
+      const [existingUsername] = await conn.query('SELECT id FROM users WHERE username = ?', [username]);
+      const usernameRows = existingUsername as Array<{ id: number }>;
+      if (usernameRows.length > 0) {
+        username = `${username}_${Date.now()}`;
+      }
       
       // Insert new user with your table structure
       const [result] = await conn.query(
-        'INSERT INTO users (username, first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?, ?)',
-        [username, firstName, lastName, email, passwordHash, 'user']
+        'INSERT INTO users (username, first_name, last_name, email, password, unhashed_password, role) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [username, firstName, lastName, email, passwordHash, password, 'user']
       );
 
       const insertResult = result as { insertId: number };
