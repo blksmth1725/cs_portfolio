@@ -3,12 +3,13 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import authRouter from './routes/auth';
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(helmet()); // Security headers
@@ -32,6 +33,8 @@ app.get('/health', (req, res) => {
 });
 
 // API routes
+app.use('/api/auth', authRouter);
+
 app.get('/api/projects', (req, res) => {
   res.json({ 
     message: 'Projects endpoint - coming soon!',
@@ -46,8 +49,8 @@ app.get('/api/about', (req, res) => {
   });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
+// 404 handler (must be last): use bare middleware instead of "*" path
+app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
