@@ -71,22 +71,24 @@ npm run install:all
 ```env
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=77fWQ9bgV^xB^3&
+DB_PASSWORD=your_secure_mysql_password
 DB_NAME=cs_portfolio
-JWT_SECRET=your_jwt_secret_here
+JWT_SECRET=your_strong_jwt_secret_key
 PORT=5001
 ```
+
+**⚠️ IMPORTANT**: Never commit your `.env` file to version control. Replace the placeholder values with your actual credentials.
 
 The `users` table will be created automatically when the server starts.
 
 ## Features
 
-- 🔐 **JWT Authentication** with MySQL backend
-- 🔄 **Hot Reload** for both client and server
-- 📱 **Responsive Design** with Tailwind CSS
-- 🚀 **TypeScript** throughout the stack
-- 🛡️ **Security** with Helmet, CORS, and bcrypt
-- 📊 **Request Logging** with Morgan
+- **JWT Authentication** with MySQL backend
+- **Hot Reload** for both client and server
+- **Responsive Design** with Tailwind CSS
+- **TypeScript** throughout the stack
+- **Security** with Helmet, CORS, and bcrypt
+- **Request Logging** with Morgan
 
 ## API Endpoints
 

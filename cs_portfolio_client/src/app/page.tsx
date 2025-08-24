@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import '@/styles/pages.css';
 
 export default function Home() {
   const router = useRouter();
@@ -19,12 +20,12 @@ export default function Home() {
   }, [isAuthenticated, loading, router]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-4">
+    <div className="main-page-container">
+      <div className="main-page-content">
+        <h1 className="main-page-title">
           {loading ? 'Loading...' : 'Redirecting...'}
         </h1>
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+        <div className="main-page-spinner"></div>
       </div>
     </div>
   );

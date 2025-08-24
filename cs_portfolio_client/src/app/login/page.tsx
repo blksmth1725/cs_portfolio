@@ -3,27 +3,76 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import '@/styles/login.css';
 
 export default function LoginPage() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showSignupFields, setShowSignupFields] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
+
+  const switchMode = (signUp: boolean) => {
+    setError(''); // Clear errors when switching
+    
+    if (signUp) {
+      // Going to Sign Up - show fields immediately
+      setIsSignUp(true);
+      setShowSignupFields(true);
+    } else {
+      // Going to Sign In - animate fields out first
+      if (isSignUp) {
+        setIsTransitioning(true);
+        // Wait for exit animation to complete before hiding fields
+        setTimeout(() => {
+          setIsSignUp(false);
+          setShowSignupFields(false);
+          setIsTransitioning(false);
+        }, 300); // Match the animation duration
+      } else {
+        setIsSignUp(false);
+        setShowSignupFields(false);
+      }
+    }
+  };
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     
+    // Validation for signup
+    if (isSignUp) {
+      if (!name.trim()) {
+        setError('Name is required');
+        setLoading(false);
+        return;
+      }
+      if (password !== confirmPassword) {
+        setError('Passwords do not match');
+        setLoading(false);
+        return;
+      }
+      if (password.length < 6) {
+        setError('Password must be at least 6 characters long');
+        setLoading(false);
+        return;
+      }
+    }
+    
     try {
-      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
-      const payload = isLogin 
-        ? { email, password }
-        : { name, email, password };
+      const endpoint = isSignUp ? '/api/auth/signup' : '/api/auth/login';
+      const payload = isSignUp 
+        ? { name, email, password }
+        : { email, password };
 
       const response = await fetch(`http://localhost:5001${endpoint}`, {
         method: 'POST',
@@ -56,118 +105,107 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {isLogin ? 'Sign in to your account' : 'Create your account'}
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          {isLogin ? (
-            <>
-              Or{' '}
-              <button
-                onClick={() => setIsLogin(false)}
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                create a new account
-              </button>
-            </>
-          ) : (
-            <>
-              Or{' '}
-              <button
-                onClick={() => setIsLogin(true)}
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                sign in to existing account
-              </button>
-            </>
-          )}
-        </p>
-      </div>
+    <div className="login-container">
+      <div className="login-main-container">
+        {/* Toggle Buttons */}
+        <div className="form-toggle">
+          <button 
+            type="button"
+            className={`toggle-btn ${!isSignUp ? 'active' : ''}`}
+            onClick={() => switchMode(false)}
+          >
+            Sign In
+          </button>
+          <button 
+            type="button"
+            className={`toggle-btn ${isSignUp ? 'active' : ''}`}
+            onClick={() => switchMode(true)}
+          >
+            Sign Up
+          </button>
+        </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        {/* Form Container */}
+        <div className="form-content">
           {error && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            <div className="error-message">
               {error}
             </div>
           )}
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {!isLogin && (
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Full Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required={!isLogin}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
-                  />
-                </div>
+
+          <form onSubmit={handleSubmit}>
+            <h2 className="form-title">
+              {isSignUp ? 'Sign Up' : 'Sign In'}
+            </h2>
+
+            {/* Sign Up only fields */}
+            {(isSignUp || showSignupFields) && (
+              <div className={`form-group signup-field ${isTransitioning ? 'exiting' : ''}`}>
+                <label className="form-label">Name</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="Enter your full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required={isSignUp}
+                />
               </div>
             )}
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
-                />
-              </div>
+            
+            <div className="form-group">
+              <label className="form-label">Email{isSignUp ? '' : ' Address'}</label>
+              <input
+                type="email"
+                className="form-input"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-input"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <div className="mt-1">
+            {/* Confirm Password - Sign Up only */}
+            {(isSignUp || showSignupFields) && (
+              <div className={`form-group signup-field ${isTransitioning ? 'exiting' : ''}`}>
+                <label className="form-label">Confirm Password</label>
                 <input
-                  id="password"
-                  name="password"
                   type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
+                  className="form-input"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required={isSignUp}
                 />
               </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    {isLogin ? 'Signing in...' : 'Signing up...'}
-                  </>
-                ) : (
-                  isLogin ? 'Sign in' : 'Sign up'
-                )}
-              </button>
-            </div>
+            )}
+            
+            <button 
+              type="submit" 
+              className="submit-btn"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span className="loading-spinner"></span>
+                  {isSignUp ? 'Creating Account...' : 'Signing In...'}
+                </>
+              ) : (
+                isSignUp ? 'Sign Up' : 'Sign In'
+              )}
+            </button>
           </form>
         </div>
       </div>
