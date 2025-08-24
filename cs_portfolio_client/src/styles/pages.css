@@ -36,19 +36,197 @@
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
   background-color: #f9fafb;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
 .home-page-content {
-  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  text-align: left;
+  color: #000; /* Standardize all text to black */
 }
 
 .home-page-title {
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
-  color: #111827;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Contact Info */
+.contact-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contact-info p {
+  color: #000;
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+/* Professional Title */
+.professional-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.professional-title h2 {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Summary */
+.summary {
+  margin-bottom: 2rem;
+}
+
+.summary p {
+  color: #000;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Work Experience */
+.work-experience {
+  margin-bottom: 2rem;
+}
+
+.work-experience h2 {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+.job {
+  margin-bottom: 1.5rem;
+}
+
+.job h3 {
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.job h4 {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.job ul {
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.job li {
+  color: #000;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+/* Education */
+.education {
+  margin-bottom: 2rem;
+}
+
+.education h2 {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+.education-item {
+  margin-bottom: 1rem;
+}
+
+.education-item h3 {
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.education-item p {
+  color: #000;
+  font-size: 0.95rem;
+  margin: 0.25rem 0;
+}
+
+.education-item ul {
+  margin-left: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.education-item li {
+  color: #000;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Languages */
+.languages {
+  margin-bottom: 2rem;
+}
+
+.languages h2 {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+.languages ul {
+  margin-left: 1.5rem;
+}
+
+.languages li {
+  color: #000;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-page-container {
+    padding: 1rem;
+  }
+  
+  .home-page-title {
+    font-size: 1.75rem;
+  }
+  
+  .work-experience h2,
+  .education h2,
+  .languages h2 {
+    font-size: 1.25rem;
+  }
+  
+  .job h3,
+  .education-item h3 {
+    font-size: 1rem;
+  }
 }
 
 /* Shared Animation */
