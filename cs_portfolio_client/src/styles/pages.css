@@ -35,19 +35,31 @@
 .home-page-container {
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
   background-color: #f9fafb;
-  /*background-color: blue;*/
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 2rem;
+  flex-direction: column;
+  padding: 0;
   overflow-y: auto;
 }
 
-.home-page-content {
-  max-width: 800px;
+.home-page-layout {
+  display: flex;
+  flex: 1;
+  gap: 0;
   width: 100%;
+}
+
+.home-page-content {
+  flex: 1;
   text-align: left;
   color: #000; /* Standardize all text to black */
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-content {
+  max-width: 800px;
+  width: 100%;
 }
 
 .home-page-title {
@@ -229,8 +241,18 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .home-page-container {
+  .home-page-layout {
+    flex-direction: column;
+  }
+
+  .home-page-content {
     padding: 1rem;
+  }
+
+  .side-bar {
+    width: 100%;
+    position: relative;
+    height: auto;
   }
   
   .home-page-title {

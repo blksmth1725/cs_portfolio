@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(userData);
         // Set HTTP-only style cookie for middleware
         document.cookie = `auth_token=${userData.token}; path=/; SameSite=Strict`;
-      } catch (error) {
+      } catch {
         localStorage.removeItem('auth_user');
         // Clear cookie on error
         document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
