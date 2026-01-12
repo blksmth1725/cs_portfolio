@@ -1,20 +1,12 @@
 import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const DB_HOST = process.env.DB_HOST || '127.0.0.1';
-const DB_PORT = Number(process.env.DB_PORT || 3306);
-const DB_USER = process.env.DB_USER || 'root';
-const DB_PASSWORD = process.env.DB_PASSWORD || '77fWQ9bgV^xB^3&';
-const DB_NAME = process.env.DB_NAME || 'cs_portfolio';
+import { DATABASE_CONFIG } from './config/database';
 
 export const pool = mysql.createPool({
-  host: DB_HOST,
-  port: DB_PORT,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
+  host: DATABASE_CONFIG.HOST,
+  port: DATABASE_CONFIG.PORT,
+  user: DATABASE_CONFIG.USER,
+  password: DATABASE_CONFIG.PASSWORD,
+  database: DATABASE_CONFIG.NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -28,7 +20,7 @@ export async function ensureUsersTable(): Promise<void> {
       SELECT TABLE_NAME 
       FROM INFORMATION_SCHEMA.TABLES 
       WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'users'
-    `, [DB_NAME]);
+    `, [DATABASE_CONFIG.NAME]);
     
     const tableExists = (tables as Array<{TABLE_NAME: string}>).length > 0;
     

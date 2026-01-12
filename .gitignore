@@ -11,6 +11,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Database configuration (contains sensitive credentials)
+cs_portfolio_server/src/config/database.ts
+
 # OS generated files
 .DS_Store
 .DS_Store?

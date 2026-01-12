@@ -1,12 +1,47 @@
+'use client';
+
 import ProtectedRoute from '@/components/ProtectedRoute';
 import '@/styles/pages.css';
 
 export default function HomePage() {
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/CS_CV_2025.pdf';
+    link.download = 'Christian_Sheen_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  /*
+
+  return (
+    <ProtectedRoute>
+    <div className="home-page-container">
+      <div className="home-page-content">
+        <h1 className="home-page-title">Christian Sheen</h1>
+        <div className="home-page-dl-btn-container">
+        <button className="home-page-button" onClick={handleDownloadResume}>
+          Download Resume
+        </button>
+      </div>
+      </div>
+      
+    </div>
+    </ProtectedRoute>   
+  );
+}
+*/
+
   return (
     <ProtectedRoute>
       <div className="home-page-container">
         <div className="home-page-content">
           <h1 className="home-page-title">Christian Sheen</h1>
+          <div className="home-page-dl-btn-container">
+        <button className="home-page-button" onClick={handleDownloadResume}>
+          Download Resume
+        </button>
+      </div>
           
           <div className="contact-info">
             <p>csheen1725@gmail.com</p>
@@ -28,7 +63,7 @@ export default function HomePage() {
             <h2>WORK EXPERIENCE</h2>
             
             <div className="job">
-              <h3>Software Engineer | Watch Systems LLC | Covington, LA | 06/2022 - Present</h3>
+              <h3>Software Engineer | Watch Systems LLC | Covington, LA | 01/2022 - Present</h3>
               <h4>Migration of legacy desktop applications to browser based applications</h4>
               <ul>
                 <li>NCIC Security clearance.</li>
@@ -41,7 +76,7 @@ export default function HomePage() {
             </div>
 
             <div className="job">
-              <h3>Junior Software Engineer | Pedra CRM LLC | Miami, FL | 06/2021 - 06/2022</h3>
+              <h3>Junior Software Engineer | Pedra CRM LLC | Miami, FL | 06/2021 - 01/2022</h3>
               <h4>Building CRM system for existing API</h4>
               <ul>
                 <li>Currently working on an iOS app with SwiftUI and Apollo as my Graphql client which provides the same functionality as the web application. (iOS)</li>
