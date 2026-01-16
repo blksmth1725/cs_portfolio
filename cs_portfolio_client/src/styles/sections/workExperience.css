@@ -1,0 +1,37 @@
+/* Work Experience Section Styles */
+
+/* Work Experience */
+.work-experience {
+  margin-bottom: 2rem;
+}
+
+.job {
+  margin-bottom: 1.5rem;
+}
+
+.job h3 {
+  color: #14213D;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.job h4 {
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.job ul {
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.job li {
+  color: #14213D;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
