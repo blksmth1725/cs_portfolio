@@ -1,15 +1,11 @@
 'use client';
 
-import '@/styles/sections/education.css';
+import '../styles/sections/sectionsSharedStyles.css';
 
 const EducationCertifications = () => {
   return (
     <div className="section-content">
-      <div className="education">
-        <div className="education-header-section">
-          <h2>EDUCATION + CERTIFICATIONS</h2>
-          <div className="education-summary">
-            <div className="summary-stats">
+          <div className="section-main-title">Education + Certifications</div>
               <div className="stat-item">
                 <span className="stat-number">6+</span>
                 <span className="stat-label">Years Learning</span>
@@ -26,9 +22,6 @@ const EducationCertifications = () => {
                 <span className="stat-number">8+</span>
                 <span className="stat-label">Technologies</span>
               </div>
-            </div>
-          </div>
-        </div>
 
         <div className="education-grid">
           <div className="education-card primary">
@@ -116,7 +109,6 @@ const EducationCertifications = () => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };
