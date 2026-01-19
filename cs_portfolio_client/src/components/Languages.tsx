@@ -1,7 +1,5 @@
 'use client';
 
-import '@/styles/sections/languages.css';
-
 const Languages = () => {
   return (
     <div className="section-content">

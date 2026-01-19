@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import JobCard from '@/components/JobCard';
 import { JOB_CARDS } from '@/app/utils/constants';
-import '@/styles/sections/workExperience.css';
+import '../styles/sections/sectionsSharedStyles.css';
 
 const WorkExperience = () => {
   const [expandedJobId, setExpandedJobId] = useState<number | null>(JOB_CARDS[0]?.id || null);
@@ -14,8 +14,8 @@ const WorkExperience = () => {
 
   return (
     <div className="section-content">
-      <div className="work-experience">
-        <h2>WORK EXPERIENCE</h2>
+        <div className="section-main-title">Work Experience</div>
+        <div className="work-experience">
         <div className={`job-cards-container ${expandedJobId ? 'has-expanded' : ''}`}>
           <div className="job-cards-main">
             {expandedJobId ? (

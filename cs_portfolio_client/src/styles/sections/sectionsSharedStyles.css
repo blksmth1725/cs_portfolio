@@ -1,0 +1,12 @@
+.section-content {
+  width: 100%;
+  height: calc(100% - var(--header-height) - var(--footer-height) - 8rem);
+  padding: 2rem;
+}
+
+.section-main-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #FCA311;
+}
