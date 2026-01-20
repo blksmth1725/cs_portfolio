@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProtectedRoute from '@/components/ProtectedRoute';
-import SideBar from '@/components/SideBar';
 import Introduction from '@/components/Introduction';
 import WorkExperience from '@/components/WorkExperience';
 import EducationCertifications from '@/components/EducationCertifications';
@@ -14,6 +13,18 @@ type SectionType = 'introduction' | 'workExperience' | 'educationCertifications'
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState<SectionType>('introduction');
+
+  useEffect(() => {
+    const handleSectionChange = (event: CustomEvent) => {
+      setActiveSection(event.detail as SectionType);
+    };
+
+    window.addEventListener('sectionChange', handleSectionChange as EventListener);
+
+    return () => {
+      window.removeEventListener('sectionChange', handleSectionChange as EventListener);
+    };
+  }, []);
 
   const renderSectionContent = () => {
     return (
@@ -30,14 +41,8 @@ export default function HomePage() {
   return (
     <ProtectedRoute>
       <div className="home-page-container">
-        <div className="home-page-layout">
-          <SideBar 
-            activeSection={activeSection} 
-            onSectionChange={setActiveSection} 
-          />
-          <div className={`home-page-content ${activeSection === 'workExperience' ? 'work-experience-active' : ''}`}>
-            {renderSectionContent()}
-          </div>
+        <div className="home-page-content-full">
+          {renderSectionContent()}
         </div>
       </div>
     </ProtectedRoute>
