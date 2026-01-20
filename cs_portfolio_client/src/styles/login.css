@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Main Container */
@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
-  background: #fff;
+  background: #f8fafc;
   padding: 2rem;
 }
 
@@ -24,8 +24,9 @@
   width: 500px;
   min-height: auto;
   background: #fff;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   overflow: hidden;
   max-width: 100%;
 }
@@ -34,7 +35,7 @@
 .form-toggle {
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .toggle-btn {
@@ -51,8 +52,8 @@
 }
 
 .toggle-btn.active {
-  color: #333;
-  background: #f8f9fa;
+  color: #14213D;
+  background: #f0f9f9;
 }
 
 .toggle-btn.active::after {
@@ -62,11 +63,12 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: #4a90e2;
+  background: #2E9CA0;
 }
 
 .toggle-btn:hover {
-  background: #f8f9fa;
+  background: #f0f9f9;
+  color: #2E9CA0;
 }
 
 /* Form Content */
@@ -80,7 +82,7 @@
   margin-bottom: 25px;
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
+  color: #14213D;
 }
 
 /* Form Groups */
@@ -107,6 +109,7 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -126,6 +129,7 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+
   100% {
     transform: translateY(-20px);
     opacity: 0;
@@ -140,7 +144,7 @@
 .form-label {
   display: block;
   font-size: 14px;
-  color: #505f75;
+  color: #14213D;
   text-transform: uppercase;
   margin-bottom: 8px;
   font-weight: 600;
@@ -152,18 +156,18 @@
   width: 100%;
   padding: 12px 15px;
   margin-top: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease;
   background: #fff;
-  color: #333;
+  color: #14213D;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  border-color: #2E9CA0;
+  box-shadow: 0 0 0 3px rgba(46, 156, 160, 0.1);
 }
 
 .form-input::placeholder {
@@ -178,7 +182,8 @@
 }
 
 .password-input {
-  padding-right: 50px; /* Make room for the eye icon */
+  padding-right: 50px;
+  /* Make room for the eye icon */
 }
 
 .password-toggle-btn {
@@ -199,12 +204,12 @@
 }
 
 .password-toggle-btn:hover {
-  color: #4a90e2;
+  color: #2E9CA0;
 }
 
 .password-toggle-btn:focus {
   outline: none;
-  color: #4a90e2;
+  color: #2E9CA0;
 }
 
 .password-toggle-btn svg {
@@ -217,7 +222,7 @@
   width: 100%;
   padding: 12px;
   margin-top: 15px;
-  background: #333;
+  background: #2E9CA0;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -225,12 +230,14 @@
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
+  border: 1px solid #2E9CA0;
 }
 
 .submit-btn:hover {
-  background: #555;
+  background: #26878b;
+  border-color: #26878b;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(46, 156, 160, 0.2);
 }
 
 .submit-btn:active {
@@ -239,6 +246,7 @@
 
 .submit-btn:disabled {
   background: #ccc;
+  border-color: #ccc;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -253,22 +261,22 @@
 }
 
 .toggle-link {
-  color: #4a90e2;
+  color: #2E9CA0;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .toggle-link:hover {
-  color: #357abd;
+  color: #26878b;
   text-decoration: underline;
 }
 
 /* Error Message */
 .error-message {
-  background: #fee;
-  border: 1px solid #fcc;
-  color: #c33;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -288,8 +296,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive Design */
@@ -299,7 +312,7 @@
     height: auto;
     min-height: 500px;
   }
-  
+
   .form-panel {
     width: 100%;
     position: relative;
@@ -307,15 +320,15 @@
     transform: none !important;
     padding: 30px;
   }
-  
+
   .sign-up-panel {
     display: none;
   }
-  
+
   .login-main-container.active .sign-in-panel {
     display: none;
   }
-  
+
   .login-main-container.active .sign-up-panel {
     display: flex;
   }
