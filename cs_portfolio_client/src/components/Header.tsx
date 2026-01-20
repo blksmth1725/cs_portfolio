@@ -13,6 +13,7 @@ export default function Header() {
   const navRef = useRef<HTMLElement>(null);
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
   const [isJiggling, setIsJiggling] = useState(false);
+  const [logoJiggling, setLogoJiggling] = useState(false);
 
   const handleLogout = () => {
     setIsDropdownOpen(false);
@@ -42,6 +43,20 @@ export default function Header() {
       window.removeEventListener('sectionChange', handleSectionChange as EventListener);
     };
   }, []);
+
+  useEffect(() => {
+    // Trigger logo jiggle when user signs in
+    if (isAuthenticated) {
+      // Small delay to allow transition to start
+      const timer = setTimeout(() => {
+        setLogoJiggling(true);
+        setTimeout(() => {
+          setLogoJiggling(false);
+        }, 300); // Match jiggle animation duration
+      }, 400); // Wait for transition to complete
+      return () => clearTimeout(timer);
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const updateSliderPosition = () => {
@@ -79,11 +94,16 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-container">
-        <div className="header-content">
+        <div className={`header-content ${!isAuthenticated ? 'header-content-centered' : ''}`}>
           {/* Logo */}
-          <div className="header-logo">
+          <div className={`header-logo ${logoJiggling ? 'logo-jiggle' : ''}`}>
             <h1 className="header-logo-text">
-              CS/Portfolio
+              <img
+                src="/csa-folder-icon (1).svg"
+                alt="CSA"
+                className="header-logo-icon"
+              />
+              <span>/Portfolio</span>
             </h1>
           </div>
 
