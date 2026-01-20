@@ -48,15 +48,9 @@ export default function Header() {
               </button>
               <button
                 className="nav-item"
-                onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'workExperience' }))}
-              >
-                Work Experience
-              </button>
-              <button
-                className="nav-item"
                 onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'educationCertifications' }))}
               >
-                Education
+                ED.PH.CC
               </button>
               <button
                 className="nav-item"
@@ -70,6 +64,12 @@ export default function Header() {
               >
                 Projects
               </button>
+            </nav>
+          )}
+
+          {/* Right side - User menu when authenticated */}
+          {isAuthenticated && (
+            <div className="header-actions">
               <button
                 className="nav-item download-btn"
                 onClick={() => {
@@ -81,12 +81,6 @@ export default function Header() {
               >
                 Download Resume
               </button>
-            </nav>
-          )}
-
-          {/* Right side - User menu when authenticated */}
-          {isAuthenticated && (
-            <div className="header-actions">
               <div className="user-menu-container">
                 <button
                   onClick={toggleDropdown}

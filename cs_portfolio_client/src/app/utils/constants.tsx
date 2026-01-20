@@ -393,3 +393,60 @@ export const EDUCATION_SUMMARY = {
     collegeCredits: "120+",
     technologies: "15+"
 };
+
+// Referrals
+export interface Referral {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    position: string;
+    company: string;
+    referenceLetter?: string; // Optional PDF path/URL for viewing in iframe modal
+}
+
+export const REFERRALS: Referral[] = [
+    // Add your referrals here
+    // Example:
+    {
+        id: "referral-1",
+        firstName: "Jeremy",
+        lastName: "Wilson",
+        email: "jeremy.wilson@watchsystems.com",
+        phone: "(985) 502-0381",
+        position: "Senior GIS Software Engineer",
+        company: "Watch Systems LLC",
+
+    },
+    {
+        id: "referral-2",
+        firstName: "Ben",
+        lastName: "Jones",
+        position: "Senior NCIC Software Engineer",
+        company: "Watch Systems LLC",
+        email: "bjones@watchsystems.com",
+        phone: "(601) 310-4023",
+        // No reference letter for this one
+    },
+    {
+        id: "referral-3",
+        firstName: "Geonathan",
+        lastName: "Sena",
+        position: "Chief Technology Architect",
+        company: "Watch Systems LLC",
+        email: "gsena@watchsystems.com",
+        phone: "(985) 237-2282",
+        // No reference letter for this one
+    },
+    {
+        id: "referral-4",
+        firstName: "Tim",
+        lastName: "Basonic",
+        position: "CIO",
+        company: "Watch Systems LLC",
+        email: "tbasonic@watchsystems.com",
+        phone: "(985) 259-0269",
+        referenceLetter: "/C Sheen recommendation letter-signed copy.pdf"
+    },
+];
