@@ -7,6 +7,7 @@ export const PERSONAL_INFO = {
     location: "Atlanta, GA, United States",
     github: "https://github.com/blksmth1725",
     linkedin: "https://linkedin.com/in/christiansheen",
+    leetcode: "https://leetcode.com/csheen1725/",
     summary: "I’m a full-stack software engineer with 4+ years of experience working on production web and mobile applications across the stack. I enjoy solving real problems, improving existing systems, and building features that make products easier to use and maintain. My work spans frontend, backend, APIs, and mobile, with a strong focus on writing practical, reliable code that supports real users and business needs. \n\nAt Watch Systems, I’ve helped migrate legacy desktop applications to modern browser-based platforms, contributed to both frontend and backend development, and worked on systems integrated with NCIC databases under CJIS and NCIC security standards. I’ve also contributed to a mobile application used by law enforcement in the field, which gave me valuable experience building software for high-trust, real-world environments. \n\nPreviously, I worked on a CRM platform using Next.js, GraphQL, and SwiftUI, where I built production features, payment flows, and mobile views backed by persisted authentication. I enjoy working close to business logic, understanding how users actually operate within systems, and shaping features that feel intuitive instead of forced."
 };
 
@@ -147,44 +148,73 @@ export interface Education {
 
 export const EDUCATION: Education[] = [
     {
-        id: "georgia-tech",
-        institution: "Georgia Institute of Technology",
-        degree: "Bachelor of Science",
-        field: "Computer Science",
-        location: "Atlanta, GA",
-        startDate: "2018",
-        endDate: "2022",
+        id: "lantec-sql-training",
+        institution: "Lantec Corporate",
+        degree: "SQL Training",
+        field: "Database Management",
+        location: "Corporate Training",
+        startDate: "2024",
+        endDate: "2024",
         status: "completed",
-        gpa: "3.7",
-        description: "Focused on software engineering, algorithms, and system design with emphasis on practical application development.",
-        courses: [
-            "Data Structures and Algorithms",
-            "Software Engineering",
-            "Database Systems",
-            "Computer Networks",
-            "Operating Systems",
-            "Web Development"
-        ],
-        technologies: ["Java", "Python", "C++", "SQL", "JavaScript", "React"]
+        description: "Professional SQL training focused on database management and query optimization.",
+        courses: [],
+        technologies: ["SQL", "Database Management", "Query Optimization"]
     },
     {
-        id: "online-certifications",
-        institution: "Various Online Platforms",
-        degree: "Professional Certifications",
-        field: "Web Development & Cloud Computing",
+        id: "bottega-bootcamp",
+        institution: "Bottega University",
+        degree: "Full Stack Web Development Bootcamp",
+        field: "Web Development",
+        location: "Utah (Remote)",
+        startDate: "01/2019",
+        endDate: "01/2020",
+        status: "completed",
+        description: "Comprehensive full-stack web development program covering modern web technologies and frameworks.",
+        courses: [],
+        technologies: ["JavaScript", "HTML", "CSS", "Node.js", "Express.js", "React", "Redux", "MongoDB"]
+    },
+    {
+        id: "udemy-node-react",
+        institution: "UDEMY",
+        degree: "Certificate of Completion",
+        field: "Node with React: Full stack Web Development",
         location: "Online",
-        startDate: "2020",
-        endDate: "Present",
-        status: "in-progress",
-        description: "Continuous learning through various online platforms to stay current with modern technologies.",
+        startDate: "02/2021",
+        endDate: "03/2021",
+        status: "completed",
+        description: "Advanced full-stack development course focusing on Node.js and React integration.",
+        courses: [],
+        technologies: ["Node.js", "React", "JavaScript", "Express.js"]
+    },
+    {
+        id: "udemy-mern-stack",
+        institution: "UDEMY",
+        degree: "Certificate of Completion",
+        field: "MERN stack front-back Web Development course",
+        location: "Online",
+        startDate: "04/2021",
+        endDate: "05/2021",
+        status: "completed",
+        description: "Complete MERN stack development course covering MongoDB, Express, React, and Node.js.",
+        courses: [],
+        technologies: ["MongoDB", "Express.js", "React", "Node.js", "JavaScript"]
+    },
+    {
+        id: "miami-dade-architecture",
+        institution: "Miami Dade College",
+        degree: "Architecture Associates in Art",
+        field: "Architectural Arts",
+        location: "Miami, FL",
+        startDate: "08/2012",
+        endDate: "08/2014",
+        status: "completed",
+        description: "Completed 70 credit hours toward a degree in Architectural Arts.",
         courses: [
-            "AWS Cloud Practitioner",
-            "React Advanced Patterns",
-            "Node.js Microservices",
-            "GraphQL Fundamentals",
-            "TypeScript Deep Dive"
+            "Adv. Design Theory",
+            "Arch Structures",
+            "Environmental Sys in Arch"
         ],
-        technologies: ["AWS", "Docker", "Kubernetes", "GraphQL", "TypeScript"]
+        technologies: ["Revit", "AutoCAD", "Architectural Design"]
     }
 ];
 
@@ -356,7 +386,8 @@ export const CONTACT_INFO = {
     location: PERSONAL_INFO.location,
     socialMedia: {
         github: PERSONAL_INFO.github,
-        linkedin: PERSONAL_INFO.linkedin
+        linkedin: PERSONAL_INFO.linkedin,
+        leetcode: PERSONAL_INFO.leetcode
     }
 };
 
