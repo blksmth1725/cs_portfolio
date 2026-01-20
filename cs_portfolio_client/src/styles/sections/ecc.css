@@ -167,6 +167,10 @@
     margin-bottom: 0.5rem;
 }
 
+.education-courses li::marker {
+    color: #2E9CA0;
+}
+
 .gpa-value {
     color: #2E9CA0;
     font-weight: 700;

@@ -49,7 +49,7 @@ const EducationCertifications = () => {
 
                   {selectedEducation.courses && selectedEducation.courses.length > 0 && (
                     <div className="education-courses">
-                      <h4>Key Courses:</h4>
+                      <h4>Concepts Learned:</h4>
                       <ul>
                         {selectedEducation.courses.map((course, index) => (
                           <li key={index}>{course}</li>
