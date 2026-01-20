@@ -47,6 +47,10 @@ export default function Header() {
   useEffect(() => {
     // Trigger logo jiggle when user signs in
     if (isAuthenticated) {
+      // Set Introduction as the default active section when signing in
+      setActiveSection('introduction');
+      window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'introduction' }));
+      
       // Small delay to allow transition to start
       const timer = setTimeout(() => {
         setLogoJiggling(true);
