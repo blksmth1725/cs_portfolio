@@ -232,7 +232,6 @@ export const SKILLS: Skill[] = [
     { name: "React", level: 5, category: "frontend" },
     { name: "Next.js", level: 4, category: "frontend" },
     { name: "HTML/CSS", level: 5, category: "frontend" },
-    { name: "Tailwind CSS", level: 4, category: "frontend" },
 
     // Backend
     { name: "Node.js", level: 4, category: "backend" },
@@ -243,18 +242,14 @@ export const SKILLS: Skill[] = [
 
     // Database
     { name: "MySQL", level: 4, category: "database" },
-    { name: "PostgreSQL", level: 3, category: "database" },
     { name: "MongoDB", level: 3, category: "database" },
 
     // Tools
     { name: "Git", level: 5, category: "tools" },
     { name: "Docker", level: 3, category: "tools" },
-    { name: "AWS", level: 3, category: "tools" },
-    { name: "Linux", level: 4, category: "tools" },
 
     // Mobile
     { name: "React Native", level: 3, category: "mobile" },
-    { name: "SwiftUI", level: 2, category: "mobile" }
 ];
 
 // Projects
