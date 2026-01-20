@@ -113,20 +113,38 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
         technologies: ["Next.js", "GraphQL", "SwiftUI", "React", "TypeScript", "Payment Processing"]
     },
     {
-        id: "architecture-operations",
-        company: "Architecture & Operations",
-        position: "Architect/Operations Specialist",
-        location: "Atlanta, GA",
+        id: "architecture-internship",
+        company: "ArchiMia",
+        position: "Architectural Intern",
+        location: "Miami, FL",
         startDate: "2018",
         endDate: "2020",
-        description: "Worked in architecture and operations providing foundation for design thinking and systematic approach to problem-solving.",
+        description: "Worked at an architecture firm as an architectural intern. I was responsible for creating architectural designs and operational procedures.",
         responsibilities: [
-            "Developed architectural designs and operational procedures",
-            "Applied design thinking principles to complex problems",
+            "Created architectural designs and operational procedures",
             "Managed project timelines and stakeholder communications",
             "Created documentation and process improvements"
         ],
-        technologies: ["CAD Software", "Project Management", "Process Design", "Documentation"]
+        technologies: ["Revit", "AutoCAD", "CAD Software", "Project Management", "Documentation"]
+    },
+    {
+        id: "tdlux-operations",
+        company: "TD LUX",
+        position: "Manager/Operations Specialist",
+        location: "Miami, FL",
+        startDate: "2011",
+        endDate: "2018",
+        description: "Worked at a restaurant as a manager/operations specialist. I was responsible for managing the restaurant and the staff. I was also responsible for the financials of the restaurant. I was also responsible for the marketing of the restaurant.",
+        responsibilities: [
+            "Managed the restaurant and the staff",
+            "Managed the financials of the restaurant",
+            "Managed the marketing of the restaurant",
+            "Managed the inventory of the restaurant",
+            "Managed the customer relationships",
+            "Managed the employee relationships",
+            "Managed the reporting of the restaurant"
+        ],
+        technologies: ["QuickBooks", "Toast", "POS", "Inventory Management", "Customer Management", "Employee Management", "Reporting", "Marketing", "Restaurant Management"]
     }
 ];
 
@@ -222,7 +240,7 @@ export const EDUCATION: Education[] = [
 export interface Skill {
     name: string;
     level: number; // 1-5
-    category: "frontend" | "backend" | "database" | "tools" | "mobile";
+    category: "frontend" | "backend" | "tools";
 }
 
 export const SKILLS: Skill[] = [
@@ -232,24 +250,20 @@ export const SKILLS: Skill[] = [
     { name: "React", level: 5, category: "frontend" },
     { name: "Next.js", level: 4, category: "frontend" },
     { name: "HTML/CSS", level: 5, category: "frontend" },
+    { name: "React Native", level: 3, category: "frontend" },
 
-    // Backend
+    // Backend & Database
     { name: "Node.js", level: 4, category: "backend" },
     { name: "Express.js", level: 4, category: "backend" },
     { name: "GraphQL", level: 3, category: "backend" },
     { name: "REST APIs", level: 5, category: "backend" },
     { name: "Python", level: 3, category: "backend" },
-
-    // Database
-    { name: "MySQL", level: 4, category: "database" },
-    { name: "MongoDB", level: 3, category: "database" },
+    { name: "MySQL", level: 4, category: "backend" },
+    { name: "MongoDB", level: 3, category: "backend" },
 
     // Tools
     { name: "Git", level: 5, category: "tools" },
     { name: "Docker", level: 3, category: "tools" },
-
-    // Mobile
-    { name: "React Native", level: 3, category: "mobile" },
 ];
 
 // Projects

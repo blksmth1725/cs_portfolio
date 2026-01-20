@@ -9,6 +9,13 @@ const EducationCertifications = () => {
 
   const selectedEducation = EDUCATION.find(edu => edu.id === selectedEducationId) || EDUCATION[0];
 
+  // Group skills by category
+  const skillsByCategory = {
+    frontend: SKILLS.filter(skill => skill.category === 'frontend').sort((a, b) => b.level - a.level),
+    backend: SKILLS.filter(skill => skill.category === 'backend').sort((a, b) => b.level - a.level),
+    tools: SKILLS.filter(skill => skill.category === 'tools').sort((a, b) => b.level - a.level),
+  };
+
   const renderStars = (level: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <span key={index} className={`star ${index < level ? 'filled' : ''}`}>★</span>
@@ -122,18 +129,51 @@ const EducationCertifications = () => {
           <div className="education-skills-card">
             <h3 className="card-title">Technical Skills</h3>
             <div className="skills-content">
-              <div className="skills-grid">
-                {SKILLS.sort((a, b) => b.level - a.level).map((skill) => (
-                  <div key={skill.name} className="skill-pill">
-                    <span className="skill-name">{skill.name}</span>
-                    <div className="skill-rating">
-                      <div className="stars">
-                        {renderStars(skill.level)}
+              <div className="skills-categories">
+                {/* Frontend */}
+                <div className="skill-category">
+                  <h4 className="skill-category-title">Frontend</h4>
+                  <div className="skills-grid">
+                    {skillsByCategory.frontend.map((skill) => (
+                      <div key={skill.name} className="skill-pill">
+                        <span className="skill-name">{skill.name}</span>
+                        <div className="stars">
+                          {renderStars(skill.level)}
+                        </div>
                       </div>
-                      <span className="skill-score">{skill.level}/5</span>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Backend & Database */}
+                <div className="skill-category">
+                  <h4 className="skill-category-title">Backend & Database</h4>
+                  <div className="skills-grid">
+                    {skillsByCategory.backend.map((skill) => (
+                      <div key={skill.name} className="skill-pill">
+                        <span className="skill-name">{skill.name}</span>
+                        <div className="stars">
+                          {renderStars(skill.level)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tools */}
+                <div className="skill-category">
+                  <h4 className="skill-category-title">Tools</h4>
+                  <div className="skills-grid">
+                    {skillsByCategory.tools.map((skill) => (
+                      <div key={skill.name} className="skill-pill">
+                        <span className="skill-name">{skill.name}</span>
+                        <div className="stars">
+                          {renderStars(skill.level)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
