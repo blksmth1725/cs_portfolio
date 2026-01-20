@@ -25,21 +25,37 @@
     min-height: 0;
 }
 
-/* Large Container - Main Education Card (Left Side - Full Height) */
+/* Large Container - Main Education Card */
 .education-main-card {
     grid-column: 1;
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 1.25rem;
-    padding-right: 200px;
-    /* Make room for buttons */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    position: relative;
     height: 100%;
+    gap: 1rem;
+}
+
+/* Top Section - Left Content + Right Buttons */
+.education-card-top {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 1rem;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Left - Main Content */
+.education-card-left {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .education-card-header {
@@ -65,6 +81,7 @@
 .education-meta {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 1rem;
     font-size: 0.875rem;
     color: #666;
@@ -99,10 +116,21 @@
     overflow-y: auto;
 }
 
+/* Right - Buttons Container */
+.education-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 2px 0;
+}
+
+/* Bottom - Technologies */
 .education-technologies {
-    margin-top: auto;
     padding-top: 1rem;
-    border-top: 2px solid #e2e8f0;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 0;
 }
 
 .education-content-main {
@@ -161,17 +189,6 @@
     border: 1px solid #e1f4f4;
 }
 
-/* Education Selection Buttons */
-.education-buttons {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-width: 160px;
-    z-index: 10;
-}
 
 .education-button {
     background: white;
@@ -329,7 +346,7 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
