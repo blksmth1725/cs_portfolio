@@ -11,9 +11,10 @@ export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleLogout = () => {
-    logout();
-    router.push('/login');
     setIsDropdownOpen(false);
+    // Redirect first, then clear auth to prevent blank screen
+    router.push('/login');
+    logout();
   };
 
   const handleSettings = () => {

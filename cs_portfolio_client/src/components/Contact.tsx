@@ -32,6 +32,16 @@ const Contact = () => {
     // Add form submission logic here
   };
 
+  const handleClearForm = () => {
+    setFormData({
+      name: '',
+      company: '',
+      phoneNumber: '',
+      email: '',
+      message: ''
+    });
+  };
+
   return (
     <div className="section-content">
       <div className="contact-layout">
@@ -199,9 +209,14 @@ const Contact = () => {
               />
             </div>
 
-            <button type="submit" className="submit-button">
-              Send Message
-            </button>
+            <div className="form-buttons">
+              <button type="submit" className="submit-button">
+                Send Message
+              </button>
+              <button type="button" className="clear-button" onClick={handleClearForm}>
+                Clear Form
+              </button>
+            </div>
           </form>
         </div>
       </div>

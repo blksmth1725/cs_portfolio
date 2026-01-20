@@ -31,9 +31,16 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     );
   }
 
-  // Don't render protected content if not authenticated
+  // Show loading/redirecting state if not authenticated instead of blank screen
   if (!isAuthenticated) {
-    return null;
+    return (
+      <div className="protected-route-loading">
+        <div className="protected-route-loading-content">
+          <div className="protected-route-spinner"></div>
+          <p className="protected-route-loading-text">Redirecting...</p>
+        </div>
+      </div>
+    );
   }
 
   return <>{children}</>;

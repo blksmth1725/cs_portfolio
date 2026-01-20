@@ -23,7 +23,7 @@ export default function LoginPage() {
 
   const switchMode = (signUp: boolean) => {
     setError(''); // Clear errors when switching
-    
+
     if (signUp) {
       // Going to Sign Up - show fields immediately
       setIsSignUp(true);
@@ -51,7 +51,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     // Validation for signup
     if (isSignUp) {
       if (!firstName.trim()) {
@@ -75,10 +75,10 @@ export default function LoginPage() {
         return;
       }
     }
-    
+
     try {
       const endpoint = isSignUp ? '/api/auth/signup' : '/api/auth/login';
-      const payload = isSignUp 
+      const payload = isSignUp
         ? { name: `${firstName} ${lastName}`, email, password }
         : { email, password };
 
@@ -90,11 +90,12 @@ export default function LoginPage() {
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || 'Authentication failed');
+        const errorData = await response.json().catch(() => ({ error: 'Authentication failed' }));
+        throw new Error(errorData.error || 'Authentication failed');
       }
+
+      const data = await response.json();
 
       // Login successful - store user data and redirect
       login({
@@ -103,10 +104,14 @@ export default function LoginPage() {
         email: data.email,
         token: data.token,
       });
-      
+
       router.push('/home');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        setError('Unable to connect to server. Please make sure the backend server is running on http://localhost:5001');
+      } else {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      }
     } finally {
       setLoading(false);
     }
@@ -117,14 +122,14 @@ export default function LoginPage() {
       <div className="login-main-container">
         {/* Toggle Buttons */}
         <div className="form-toggle">
-          <button 
+          <button
             type="button"
             className={`toggle-btn ${!isSignUp ? 'active' : ''}`}
             onClick={() => switchMode(false)}
           >
             Sign In
           </button>
-          <button 
+          <button
             type="button"
             className={`toggle-btn ${isSignUp ? 'active' : ''}`}
             onClick={() => switchMode(true)}
@@ -142,7 +147,7 @@ export default function LoginPage() {
           )}
 
           <form onSubmit={handleSubmit}>
-          
+
             {/* Sign Up only fields */}
             {(isSignUp || showSignupFields) && (
               <>
@@ -170,7 +175,7 @@ export default function LoginPage() {
                 </div>
               </>
             )}
-            
+
             <div className="form-group">
               <label className="form-label">Email</label>
               <input
@@ -182,7 +187,7 @@ export default function LoginPage() {
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <label className="form-label">Password</label>
               <div className="password-input-container">
@@ -279,9 +284,9 @@ export default function LoginPage() {
                 </div>
               </div>
             )}
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               className="submit-btn"
               disabled={loading}
             >
