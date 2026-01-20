@@ -175,7 +175,7 @@ export const EDUCATION: Education[] = [
         endDate: "2024",
         status: "completed",
         description: "Professional SQL training focused on database management and query optimization.",
-        courses: [],
+        courses: ["Advanced Queries & Subqueries", "Stored Procedures", "Joins", "Views", "Indexes", "Performance Tuning", "Security", "Backup and Recovery", "Data Warehousing", "Data Integration"],
         technologies: ["SQL", "Database Management", "Query Optimization"]
     },
     {
@@ -188,7 +188,7 @@ export const EDUCATION: Education[] = [
         endDate: "01/2020",
         status: "completed",
         description: "Comprehensive full-stack web development program covering modern web technologies and frameworks.",
-        courses: [],
+        courses: ["Frontend Styling & Animation", "React Principles & Patterns", "Backend Development with Node.js", "API Development with Express.js", "Deployment & Hosting", "Agile Development", "Version Control & Git"],
         technologies: ["JavaScript", "HTML", "CSS", "Node.js", "Express.js", "React", "Redux", "MongoDB"]
     },
     {
