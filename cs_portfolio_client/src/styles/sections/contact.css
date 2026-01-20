@@ -434,7 +434,7 @@
 
 .reference-modal-close {
     position: absolute;
-    top: 1rem;
+    top: .75rem;
     right: 1rem;
     background: #2E9CA0;
     color: white;

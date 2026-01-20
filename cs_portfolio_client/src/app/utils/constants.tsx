@@ -429,7 +429,7 @@ export const REFERRALS: Referral[] = [
         lastName: "Wilson",
         email: "jeremy.wilson@watchsystems.com",
         phone: "(985) 502-0381",
-        position: "Senior GIS Software Engineer",
+        position: "Senior GIS Engineer",
         company: "Watch Systems LLC",
 
     },
@@ -437,7 +437,7 @@ export const REFERRALS: Referral[] = [
         id: "referral-2",
         firstName: "Ben",
         lastName: "Jones",
-        position: "Senior NCIC Software Engineer",
+        position: "Senior NCIC Engineer",
         company: "Watch Systems LLC",
         email: "bjones@watchsystems.com",
         phone: "(601) 310-4023",
