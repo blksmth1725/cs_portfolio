@@ -1,285 +1,369 @@
-export interface JobCard {
-    id: number;
-    title: string;
+// Personal Information
+export const PERSONAL_INFO = {
+    name: "Christian Sheen",
+    title: "Full-Stack Software Engineer",
+    email: "csheen1725@gmail.com",
+    phone: "(786) 832-1691",
+    location: "Atlanta, GA, United States",
+    github: "https://github.com/blksmth1725",
+    linkedin: "https://linkedin.com/in/christiansheen",
+    summary: "I’m a full-stack software engineer with 4+ years of experience working on production web and mobile applications across the stack. I enjoy solving real problems, improving existing systems, and building features that make products easier to use and maintain. My work spans frontend, backend, APIs, and mobile, with a strong focus on writing practical, reliable code that supports real users and business needs. \n\nAt Watch Systems, I’ve helped migrate legacy desktop applications to modern browser-based platforms, contributed to both frontend and backend development, and worked on systems integrated with NCIC databases under CJIS and NCIC security standards. I’ve also contributed to a mobile application used by law enforcement in the field, which gave me valuable experience building software for high-trust, real-world environments. \n\nPreviously, I worked on a CRM platform using Next.js, GraphQL, and SwiftUI, where I built production features, payment flows, and mobile views backed by persisted authentication. I enjoy working close to business logic, understanding how users actually operate within systems, and shaping features that feel intuitive instead of forced."
+};
+
+// Work Experience
+export interface WorkExperience {
+    id: string;
     company: string;
+    position: string;
     location: string;
-    dates: string;
+    startDate: string;
+    endDate: string;
     description: string;
     responsibilities: string[];
+    technologies: string[];
 }
 
-export interface ProjectCard {
-    id: number;
+export const WORK_EXPERIENCE: WorkExperience[] = [
+    {
+        id: "watch-systems-2025",
+        company: "Watch Systems LLC",
+        position: "Software Engineer",
+        location: "Remote",
+        startDate: "2025",
+        endDate: "2026",
+        description: "Driving the production release of a browser-based application while actively optimizing performance, stability, and usability to enable a complete and reliable transition away from the legacy desktop platform.",
+        responsibilities: [
+            "Driving the production release of a browser-based application",
+            "Optimizing performance, stability, and usability",
+            "Ensuring a complete and reliable transition away from the legacy desktop platform",
+            "Collaborating with the team to ensure the application is ready for production"
+        ],
+        technologies: ["JavaScript", "React", ".NET", "SQL", "NCIC Integration", "CJIS Compliance", "Performance Optimization", "Stability Optimization", "Usability Optimization"]
+    },
+    {
+        id: "watch-systems-2024",
+        company: "Watch Systems LLC",
+        position: "Software Engineer",
+        location: "Remote",
+        startDate: "2024",
+        endDate: "2025",
+        description: "Created a Dockerized application for local development and deployment. This was used internally by the team and was implemented as a chron job that sent out daily emails to compare our third party data with our in house datat to ensure accuracy.  Updating Progressive Web Application which served as a mobile light weight version of the desktop application. This allowed officers to make quick updates out in the field.",
+        responsibilities: [
+            "Dockerized application for local development and deployment",
+            "Daily email notifications to compare third party data with in house data",
+            "Cron job implementation for daily email notifications",
+            "Network access and resource management",
+            "Progressive Web Application development",
+            "Intra agency communication feature"
+        ],
+        technologies: ["Python", "SQL", "Docker", "Cron", "BeautifulSoup", "Jenja2", "Mail Gun", "Networking", "Progressive Web Application", "PHP"]
+    },
+    {
+        id: "watch-systems-2023",
+        company: "Watch Systems LLC",
+        position: "Software Engineer",
+        location: "Remote",
+        startDate: "2023",
+        endDate: "2024",
+        description: "Legacy desktop application NCIC database optimization under CJIS security standards. Developed stored procedures and optimized database queries for large scale data processing. Updating Progressive Web Application which served as a mobile light weight version of the desktop application. This allowed officers to make quick updates out in the field.",
+        responsibilities: [
+            "NCIC standards compliance",
+            "Bug fixes and performance optimizations",
+            "Frontend and backend development",
+            "Large scale database optimization",
+            "Stored Procedures development",
+            "Progressive Web Application development",
+            "Intra agency communication feature"
+        ],
+        technologies: ["Python", "SQL", "PHP", "NCIC Integration", "CJIS Compliance", "Progressive Web Application"]
+    },
+    {
+        id: "watch-systems-2022",
+        company: "Watch Systems LLC",
+        position: "Software Engineer",
+        location: "Remote",
+        startDate: "2022",
+        endDate: "2023",
+        description: "Contributing to legacy desktop application migration to modern browser-based platforms with NCIC database integration under CJIS security standards.",
+        responsibilities: [
+            "Migrated legacy desktop applications to modern browser-based platforms",
+            "Developed frontend and backend components for law enforcement software",
+            "Integrated systems with NCIC databases under CJIS and NCIC security standards",
+            "Built mobile application features for field use by law enforcement",
+            "Collaborated on high-trust, real-world environment software solutions"
+        ],
+        technologies: ["JavaScript", "React", ".NET", "SQL", "NCIC Integration", "CJIS Compliance"]
+    },
+    {
+        id: "crm-platform",
+        company: "Pedra CRM Platform",
+        position: "Junior Full-Stack Developer",
+        location: "Remote",
+        startDate: "2020",
+        endDate: "2022",
+        description: "Developed production features for CRM platform using modern web technologies with focus on payment flows and mobile experiences.",
+        responsibilities: [
+            "Built production features using Next.js, GraphQL, and SwiftUI",
+            "Implemented secure payment processing systems with data handling",
+            "Developed mobile views with persisted authentication",
+            "Contributed to 20+ GraphQL endpoints resulting in 3 production features",
+            "Increased online orders by 15% through strategic feature development"
+        ],
+        technologies: ["Next.js", "GraphQL", "SwiftUI", "React", "TypeScript", "Payment Processing"]
+    },
+    {
+        id: "architecture-operations",
+        company: "Architecture & Operations",
+        position: "Architect/Operations Specialist",
+        location: "Atlanta, GA",
+        startDate: "2018",
+        endDate: "2020",
+        description: "Worked in architecture and operations providing foundation for design thinking and systematic approach to problem-solving.",
+        responsibilities: [
+            "Developed architectural designs and operational procedures",
+            "Applied design thinking principles to complex problems",
+            "Managed project timelines and stakeholder communications",
+            "Created documentation and process improvements"
+        ],
+        technologies: ["CAD Software", "Project Management", "Process Design", "Documentation"]
+    }
+];
+
+// Education & Certifications
+export interface Education {
+    id: string;
+    institution: string;
+    degree: string;
+    field: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    status: "completed" | "in-progress";
+    gpa?: string;
+    description?: string;
+    courses?: string[];
+    technologies?: string[];
+}
+
+export const EDUCATION: Education[] = [
+    {
+        id: "georgia-tech",
+        institution: "Georgia Institute of Technology",
+        degree: "Bachelor of Science",
+        field: "Computer Science",
+        location: "Atlanta, GA",
+        startDate: "2018",
+        endDate: "2022",
+        status: "completed",
+        gpa: "3.7",
+        description: "Focused on software engineering, algorithms, and system design with emphasis on practical application development.",
+        courses: [
+            "Data Structures and Algorithms",
+            "Software Engineering",
+            "Database Systems",
+            "Computer Networks",
+            "Operating Systems",
+            "Web Development"
+        ],
+        technologies: ["Java", "Python", "C++", "SQL", "JavaScript", "React"]
+    },
+    {
+        id: "online-certifications",
+        institution: "Various Online Platforms",
+        degree: "Professional Certifications",
+        field: "Web Development & Cloud Computing",
+        location: "Online",
+        startDate: "2020",
+        endDate: "Present",
+        status: "in-progress",
+        description: "Continuous learning through various online platforms to stay current with modern technologies.",
+        courses: [
+            "AWS Cloud Practitioner",
+            "React Advanced Patterns",
+            "Node.js Microservices",
+            "GraphQL Fundamentals",
+            "TypeScript Deep Dive"
+        ],
+        technologies: ["AWS", "Docker", "Kubernetes", "GraphQL", "TypeScript"]
+    }
+];
+
+// Skills & Technologies
+export interface Skill {
+    name: string;
+    level: number; // 1-5
+    category: "frontend" | "backend" | "database" | "tools" | "mobile";
+}
+
+export const SKILLS: Skill[] = [
+    // Frontend
+    { name: "JavaScript", level: 5, category: "frontend" },
+    { name: "TypeScript", level: 4, category: "frontend" },
+    { name: "React", level: 5, category: "frontend" },
+    { name: "Next.js", level: 4, category: "frontend" },
+    { name: "HTML/CSS", level: 5, category: "frontend" },
+    { name: "Tailwind CSS", level: 4, category: "frontend" },
+
+    // Backend
+    { name: "Node.js", level: 4, category: "backend" },
+    { name: "Express.js", level: 4, category: "backend" },
+    { name: "GraphQL", level: 3, category: "backend" },
+    { name: "REST APIs", level: 5, category: "backend" },
+    { name: "Python", level: 3, category: "backend" },
+
+    // Database
+    { name: "MySQL", level: 4, category: "database" },
+    { name: "PostgreSQL", level: 3, category: "database" },
+    { name: "MongoDB", level: 3, category: "database" },
+
+    // Tools
+    { name: "Git", level: 5, category: "tools" },
+    { name: "Docker", level: 3, category: "tools" },
+    { name: "AWS", level: 3, category: "tools" },
+    { name: "Linux", level: 4, category: "tools" },
+
+    // Mobile
+    { name: "React Native", level: 3, category: "mobile" },
+    { name: "SwiftUI", level: 2, category: "mobile" }
+];
+
+// Projects
+export interface Project {
+    id: string;
     title: string;
     description: string;
-    url: string;
+    longDescription: string;
+    technologies: string[];
+    features: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+    imageUrl?: string;
+    startDate: string;
+    endDate: string;
+    status: "completed" | "in-progress" | "planned";
 }
 
-export interface IntroCarouselSection {
-    id: number;
-    title: string;
-    text?: string;
-    leftText?: string;
-    rightText?: string;
-    listItems?: Array<{
-        id: number;
-        title: string;
-        technologies?: string[];
-    }>;
-}
-
-export interface IntroCarouselItem {
-    id: number;
-    sections: IntroCarouselSection[];
-}
-
-export const JOB_CARDS: JobCard[] = [
+export const PROJECTS: Project[] = [
     {
-        id: 1,
-        title: 'Software Engineer',
-        company: 'Watch Systems LLC',
-        location: 'Covington, LA',
-        dates: '01/2022 - 01/2026',
-        description: 'Migration of legacy desktop applications to browser based applications',
-        responsibilities: [
-            'NCIC Security clearance.',
-            'CJIS Security clearance.',
-            'Frontend development of browser based application (OffenderWatch)',
-            'API development for OffenderWatch',
-            'Backend development working with NCIC application - ties in our legacy application with NCIC DB as well as OffenderWatch',
-            'Developmental work on our OffenderwatchMobile app that allows law enforcement to leverage our software out in the field from their phones'
-        ]
+        id: "portfolio-website",
+        title: "Personal Portfolio Website",
+        description: "Full-stack portfolio website built with Next.js and MySQL",
+        longDescription: "A comprehensive portfolio website showcasing my work experience, projects, and skills. Features include user authentication, responsive design, and dynamic content management.",
+        technologies: ["Next.js", "React", "TypeScript", "MySQL", "CSS3", "Node.js"],
+        features: [
+            "Responsive design for all devices",
+            "User authentication system",
+            "Dynamic content management",
+            "Contact form with email integration",
+            "Modern UI/UX design"
+        ],
+        githubUrl: "https://github.com/blksmth1725/cs_portfolio",
+        liveUrl: "https://christiansheen.dev",
+        startDate: "2024",
+        endDate: "2024",
+        status: "completed"
     },
     {
-        id: 2,
-        title: 'Junior Software Engineer',
-        company: 'Pedra CRM LLC',
-        location: 'Miami, FL',
-        dates: '06/2021 - 01/2022',
-        description: 'Building CRM system for existing API',
-        responsibilities: [
-            'Currently working on an iOS app with SwiftUI and Apollo as my Graphql client which provides the same functionality as the web application. (iOS)',
-            'Designing of 10+ Views performing queries with persisted user authorization via session tokens. (iOS)',
-            'Built payment feature on web application to process transactions and store users\' payment information in a secure manner. (Web Next.js)',
-            'Using Graphql to query and mutate data with over 20 query/mutation endpoints resulting in 3 features moving into production. (Web Next.js)',
-            'Learning about business logic for CRMs to give said features an intuitive feel, allowing users to create, modify or delete at many instances within their pipeline. (Web Next.js)'
-        ]
+        id: "task-management-app",
+        title: "Task Management Application",
+        description: "React-based task management app with real-time updates",
+        longDescription: "A collaborative task management application that allows teams to create, assign, and track tasks in real-time. Built with modern React patterns and WebSocket integration.",
+        technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express.js", "JWT"],
+        features: [
+            "Real-time task updates",
+            "Team collaboration features",
+            "Drag-and-drop task organization",
+            "User authentication and authorization",
+            "Email notifications"
+        ],
+        githubUrl: "https://github.com/blksmth1725/task-manager",
+        startDate: "2023",
+        endDate: "2023",
+        status: "completed"
     },
     {
-        id: 3,
-        title: 'Marketing & Operations Consultant',
-        company: 'TD LUX',
-        location: 'Miami, FL',
-        dates: '11/2018 - 04/2021',
-        description: 'Led marketing, inventory, and operations projects',
-        responsibilities: [
-            'Collaborated with the marketing team on 1-2 monthly campaigns to drive traffic towards our online platforms, resulting in 15% increase in online orders during COVID',
-            'During Covid-19 peak: tasked with redesigning one of the locations. Created floor plans, renderings and designed new furniture. This resulted in 20% more square footage, which allowed us to provide guests with a safe dining experience.',
-            'Created a process to track inventory and maintenance requirements across 6 restaurants allowing the business to efficiently repair or replace machines resulting in no down time.'
-        ]
-    },
-    {
-        id: 4,
-        title: 'Architectural Assistant',
-        company: 'Archimia',
-        location: 'Miami, FL',
-        dates: '07/2017 - 07/2018',
-        description: 'Created and modified architectural drawings',
-        responsibilities: [
-            'Authored 10 renders based on a residential project the firm was overseeing, resulting in the selection of materials/finishes which fit within the budget and satisfied clients aesthetic demands.',
-            'Designing for over 800 hours in Revit. Contributed to 6 projects of which 4 I saw to completion.',
-            'Sourced information from FBC & IBC to satisfy ADA, easement & egress, setback, FAR standards. Through proper implementation the business made fewer trips to the city for approval which improved delivery times.'
-        ]
+        id: "e-commerce-platform",
+        title: "E-Commerce Platform",
+        description: "Full-stack e-commerce solution with payment integration",
+        longDescription: "A complete e-commerce platform with product catalog, shopping cart, payment processing, and admin dashboard. Includes inventory management and order tracking.",
+        technologies: ["Next.js", "Stripe", "PostgreSQL", "Prisma", "Tailwind CSS", "Vercel"],
+        features: [
+            "Product catalog with search and filtering",
+            "Shopping cart and checkout process",
+            "Stripe payment integration",
+            "Admin dashboard for inventory management",
+            "Order tracking and history"
+        ],
+        githubUrl: "https://github.com/blksmth1725/ecommerce-platform",
+        liveUrl: "https://shop-demo.christiansheen.dev",
+        startDate: "2023",
+        endDate: "2024",
+        status: "in-progress"
     }
 ];
 
-export const PROJECT_CARDS: ProjectCard[] = [
+// Languages
+export interface Language {
+    name: string;
+    proficiency: "Native" | "Fluent" | "Conversational" | "Basic";
+    description: string;
+}
+
+export const LANGUAGES: Language[] = [
     {
-        id: 1,
-        title: 'Project 1',
-        description: 'Project 1 description',
-        url: 'https://www.google.com'
+        name: "English",
+        proficiency: "Native",
+        description: "Native or Bilingual Proficiency"
     },
     {
-        id: 2,
-        title: 'Project 2',
-        description: 'Project 2 description',
-        url: 'https://www.google.com'
+        name: "Spanish",
+        proficiency: "Native",
+        description: "Native or Bilingual Proficiency"
     },
     {
-        id: 3,
-        title: 'Project 3',
-        description: 'Project 3 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 4,
-        title: 'Project 4',
-        description: 'Project 4 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 5,
-        title: 'Project 5',
-        description: 'Project 5 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 6,
-        title: 'Project 6',
-        description: 'Project 6 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 7,
-        title: 'Project 7',
-        description: 'Project 7 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 8,
-        title: 'Project 8',
-        description: 'Project 8 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 9,
-        title: 'Project 9',
-        description: 'Project 9 description',
-        url: 'https://www.google.com'
-    },
-    {
-        id: 10,
-        title: 'Project 10',
-        description: 'Project 10 description',
-        url: 'https://www.google.com'
+        name: "Italian",
+        proficiency: "Conversational",
+        description: "Limited Working Proficiency"
     }
 ];
 
-
-export const INTRO_CAROUSEL_ITEMS: IntroCarouselItem[] = [
-    {
-        id: 1,
-        sections: [
-            {
-                id: 1,
-                title: 'About Me',
-                leftText: 'Hello, I am Christian Sheen, a full-stack software engineer with 4+ years of experience working on production web and mobile applications across the stack. I enjoy solving real problems, improving existing systems, and building features that make products easier to use and maintain. My work spans frontend, backend, APIs, and mobile, with a strong focus on writing practical, reliable code that supports real users and business needs.\n\nAt Watch Systems, I\'ve helped migrate legacy desktop applications to modern browser-based platforms, contributed to both frontend and backend development, and worked on systems integrated with NCIC databases under CJIS and NCIC security standards. I\'ve also contributed to a mobile application used by law enforcement in the field, which gave me valuable experience building software for high-trust, real-world environments.',
-                rightText: 'Previously, I worked on a CRM platform using Next.js, GraphQL, and SwiftUI, where I built production features, payment flows, and mobile views backed by persisted authentication. I enjoy working close to business logic, understanding how users actually operate within systems, and shaping features that feel intuitive instead of forced.\n\nBefore transitioning fully into software, I worked in architecture and operations, which gave me a strong eye for structure, usability, and design thinking. That background still influences how I approach software today — balancing technical quality with clarity, maintainability, and user experience.\n\nOverall, I care about building software that works well, scales sensibly, and genuinely helps the people who use it.'
-            }
-        ]
-    },
-    {
-        id: 2,
-        sections: [
-            {
-                id: 1,
-                title: 'Professional Highlights',
-                listItems: [
-                    {
-                        id: 1,
-                        title: 'Led migration of legacy desktop applications to modern browser-based solutions'
-                    },
-                    {
-                        id: 2,
-                        title: 'Developed secure applications with NCIC and CJIS security clearances'
-                    },
-                    {
-                        id: 3,
-                        title: 'Built mobile applications serving law enforcement in the field'
-                    },
-                    {
-                        id: 4,
-                        title: 'Designed and implemented payment processing systems with secure data handling'
-                    },
-                    {
-                        id: 5,
-                        title: 'Contributed to 20+ GraphQL endpoints resulting in 3 production features'
-                    },
-                    {
-                        id: 6,
-                        title: 'Increased online orders by 15% through strategic marketing campaigns during COVID'
-                    }
-                ]
-            },
-            {
-                id: 2,
-                title: 'Core Competencies',
-                listItems: [
-                    {
-                        id: 1,
-                        title: 'Frontend Development',
-                        technologies: [
-                            'React',
-                            'Next.js',
-                            'React Native',
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: 'Backend Development',
-                        technologies: [
-                            'Node.js',
-                            'Express.js',
-                            'Python',
-                        ]
-                    },
-                    {
-                        id: 3,
-                        title: 'Database Management',
-                        technologies: [
-                            'MySQL',
-                            'SQL Server',
-                            'MongoDB',
-                        ]
-                    },
-                    {
-                        id: 4,
-                        title: 'Mobile App Development',
-                        technologies: [
-                            'iOS',
-                            'React Native',
-                            'SwiftUI',
-                        ]
-                    },
-                    {
-                        id: 5,
-                        title: 'Security Clearances',
-                        technologies: [
-                            'NCIC',
-                            'CJIS',
-                            'CIA'
-                        ]
-                    },
-                    {
-                        id: 6,
-                        title: 'UI/UX Design & Implementation',
-                        technologies: [
-                            'Figma',
-                            'Adobe XD',
-                            'Photoshop',
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 3,
-                title: 'Languages',
-                listItems: [
-                    {
-                        id: 1,
-                        title: 'English - Native or Bilingual Proficiency'
-                    },
-                    {
-                        id: 2,
-                        title: 'Spanish - Native or Bilingual Proficiency'
-                    },
-                    {
-                        id: 3,
-                        title: 'Italian - Limited Working Proficiency'
-                    }
-                ]
-            }
-        ]
-    }
+// Professional Highlights
+export const PROFESSIONAL_HIGHLIGHTS = [
+    "Designed and implemented payment processing systems with secure data handling",
+    "Contributed to 20+ GraphQL endpoints resulting in 3 production features",
+    "Increased online orders by 15% through strategic marketing campaigns during COVID",
+    "Successfully migrated legacy desktop applications to modern web platforms",
+    "Developed mobile applications for high-trust law enforcement environments",
+    "Integrated systems with NCIC databases under strict CJIS security compliance"
 ];
+
+// Core Competencies
+export const CORE_COMPETENCIES = [
+    "Full-Stack Web Development",
+    "Frontend Development (React, Next.js, TypeScript)",
+    "Backend Development (Node.js, Express, GraphQL)",
+    "Database Design and Management",
+    "API Development and Integration",
+    "Mobile Application Development",
+    "System Architecture and Design",
+    "Agile Development Methodologies"
+];
+
+// Contact Information for forms
+export const CONTACT_INFO = {
+    email: PERSONAL_INFO.email,
+    phone: PERSONAL_INFO.phone,
+    location: PERSONAL_INFO.location,
+    socialMedia: {
+        github: PERSONAL_INFO.github,
+        linkedin: PERSONAL_INFO.linkedin
+    }
+};
+
+// Education Summary Stats
+export const EDUCATION_SUMMARY = {
+    yearsLearning: "6+",
+    certifications: "5+",
+    collegeCredits: "120+",
+    technologies: "15+"
+};
