@@ -308,6 +308,27 @@
 }
 
 /* Form buttons container */
+.form-status {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.form-status-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.form-status-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
 .form-buttons {
     display: flex;
     gap: 0.75rem;
@@ -317,6 +338,11 @@
 }
 
 /* Submit button */
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .submit-button {
     background: #2E9CA0;
     color: white;
@@ -337,6 +363,11 @@
 }
 
 /* Clear button */
+.clear-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .clear-button {
     background: #f8fafc;
     color: #26878b;

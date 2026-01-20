@@ -17,6 +17,11 @@ const Contact = () => {
   });
 
   const [selectedReferenceLetter, setSelectedReferenceLetter] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({
+    type: null,
+    message: ''
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,12 +29,65 @@ const Contact = () => {
       ...prev,
       [name]: value
     }));
+    // Clear status message when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: '' });
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add form submission logic here
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('http://localhost:5001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Check if response is ok before trying to parse JSON
+      if (!response.ok) {
+        let errorMessage = 'Failed to send message';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch {
+          // If response isn't JSON, use status text
+          errorMessage = response.statusText || errorMessage;
+        }
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+
+      // Success
+      setSubmitStatus({
+        type: 'success',
+        message: 'Message sent successfully! I\'ll get back to you soon.'
+      });
+
+      // Clear form after successful submission
+      handleClearForm();
+    } catch (err) {
+      let errorMessage = 'Failed to send message. Please try again.';
+
+      if (err instanceof TypeError && err.message === 'Failed to fetch') {
+        errorMessage = 'Unable to connect to server. Please make sure the backend server is running on http://localhost:5001';
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
+
+      setSubmitStatus({
+        type: 'error',
+        message: errorMessage
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClearForm = () => {
@@ -40,6 +98,7 @@ const Contact = () => {
       email: '',
       message: ''
     });
+    setSubmitStatus({ type: null, message: '' });
   };
 
   return (
@@ -209,11 +268,25 @@ const Contact = () => {
               />
             </div>
 
+            {submitStatus.type && (
+              <div className={`form-status ${submitStatus.type === 'success' ? 'form-status-success' : 'form-status-error'}`}>
+                {submitStatus.message}
+              </div>
+            )}
             <div className="form-buttons">
-              <button type="submit" className="submit-button">
-                Send Message
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
-              <button type="button" className="clear-button" onClick={handleClearForm}>
+              <button
+                type="button"
+                className="clear-button"
+                onClick={handleClearForm}
+                disabled={isSubmitting}
+              >
                 Clear Form
               </button>
             </div>
