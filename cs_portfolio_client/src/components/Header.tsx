@@ -36,7 +36,54 @@ export default function Header() {
               CS/Portfolio
             </h1>
           </div>
-          
+
+          {/* Navigation - only show when authenticated */}
+          {isAuthenticated && (
+            <nav className="header-nav">
+              <button
+                className="nav-item"
+                onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'introduction' }))}
+              >
+                Introduction
+              </button>
+              <button
+                className="nav-item"
+                onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'workExperience' }))}
+              >
+                Work Experience
+              </button>
+              <button
+                className="nav-item"
+                onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'educationCertifications' }))}
+              >
+                Education
+              </button>
+              <button
+                className="nav-item"
+                onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'contact' }))}
+              >
+                Contact
+              </button>
+              <button
+                className="nav-item"
+                onClick={() => window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'projects' }))}
+              >
+                Projects
+              </button>
+              <button
+                className="nav-item download-btn"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/assets/resume.pdf';
+                  link.download = 'Christian_Sheen_Resume.pdf';
+                  link.click();
+                }}
+              >
+                Download Resume
+              </button>
+            </nav>
+          )}
+
           {/* Right side - User menu when authenticated */}
           {isAuthenticated && (
             <div className="header-actions">
@@ -60,10 +107,10 @@ export default function Header() {
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
                 </button>
-                
+
                 {isDropdownOpen && (
                   <>
-                    <div 
+                    <div
                       className="dropdown-overlay"
                       onClick={() => setIsDropdownOpen(false)}
                     ></div>
@@ -77,7 +124,7 @@ export default function Header() {
                         </div>
                       </div>
                       <div className="dropdown-divider"></div>
-                      <button 
+                      <button
                         className="dropdown-item"
                         onClick={handleSettings}
                       >
@@ -97,7 +144,7 @@ export default function Header() {
                         </svg>
                         Settings
                       </button>
-                      <button 
+                      <button
                         className="dropdown-item logout-item"
                         onClick={handleLogout}
                       >

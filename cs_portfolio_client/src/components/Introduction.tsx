@@ -2,160 +2,80 @@
 
 import { useState } from 'react';
 import '@/styles/sections/introduction.css';
+import { PERSONAL_INFO, WORK_EXPERIENCE } from '@/app/utils/constants';
 
 const Introduction = () => {
-  const [expandedCard, setExpandedCard] = useState<string | null>('about');
+  const { name, title, summary } = PERSONAL_INFO;
+  const [selectedWorkId, setSelectedWorkId] = useState(WORK_EXPERIENCE[0]?.id || '');
 
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/CS_CV_2025.pdf';
-    link.download = 'Christian_Sheen_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handleCardClick = (cardId: string) => {
-    const element = document.getElementById(`section-${cardId}`);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-    setExpandedCard(cardId);
-  };
+  const selectedWork = WORK_EXPERIENCE.find(work => work.id === selectedWorkId) || WORK_EXPERIENCE[0];
 
   return (
     <div className="section-content">
-      <div className="intro-layout">
-        <div className="professional-title">
-          <h2>FRONT END DEVELOPER</h2>
-        </div>
-        
-        <div className="skills-cards-grid">
-          <div className="skill-card programming-language">
-            <h4>HTML</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
+      <div className="introduction-layout">
+        {/* Left side - Text card */}
+        <div className="intro-text-card">
+          <div className="intro-header">
+            <div className="intro-name">{name}</div>
+            <div className="intro-title">{title}</div>
           </div>
-          <div className="skill-card programming-language">
-            <h4>CSS</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
+          <div className="intro-summary">
+            {summary.split('\n\n').map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
-          <div className="skill-card programming-language">
-            <h4>JavaScript</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>React</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>Node.js</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>Python</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>C#</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>SQL</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>.NET</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
-          <div className="skill-card programming-language">
-            <h4>Express.js</h4>
-            <div className="skill-rating">
-              <span className="stars">★★★★★</span> <span className="score">5/5</span>
-            </div>
-          </div>
+
         </div>
 
-        <div className="intro-split-view">
-          <div className="intro-cards-left">
-            <div className="intro-expanded-card">
-              <div className="intro-card expanded">
-                <div id="section-about" className="intro-section">
-                  <h3>About Me</h3>
-                  <p>With over 4 years of professional software development experience, I specialize in full-stack web development with a focus on creating intuitive user interfaces and robust backend systems. My journey spans from architectural design to modern web applications, giving me a unique perspective on both technical implementation and user experience design.</p>
-                </div>
+        {/* Center - Work experience card */}
+        <div className="intro-work-card">
+          <div className="work-card-header">
+            <h3 className="work-company">{selectedWork.company}</h3>
+            <div className="work-position">{selectedWork.position}</div>
+            <div className="work-meta">
+              <span className="work-location">{selectedWork.location}</span>
+              <span className="work-dates">{selectedWork.startDate} - {selectedWork.endDate}</span>
+            </div>
+          </div>
 
-                <div id="section-competencies" className="intro-section">
-                  <h3>Core Competencies</h3>
-                  <ul className="competencies-list">
-                    <li>Frontend Development (React, Next.js, React Native)</li>
-                    <li>Backend Development (Node.js, .NET, API Design)</li>
-                    <li>Database Management (MySQL, SQL Server)</li>
-                    <li>Mobile App Development (iOS, SwiftUI, React Native)</li>
-                    <li>Security Clearances (NCIC, CJIS)</li>
-                    <li>UI/UX Design & Implementation</li>
-                  </ul>
-                </div>
+          <div className="work-card-content">
+            <div className="work-content-main">
+              <p className="work-description">{selectedWork.description}</p>
 
-                <div id="section-highlights" className="intro-section">
-                  <h3>Professional Highlights</h3>
-                  <ul className="highlights-list">
-                    <li>Led migration of legacy desktop applications to modern browser-based solutions</li>
-                    <li>Developed secure applications with NCIC and CJIS security clearances</li>
-                    <li>Built mobile applications serving law enforcement in the field</li>
-                    <li>Designed and implemented payment processing systems with secure data handling</li>
-                    <li>Contributed to 20+ GraphQL endpoints resulting in 3 production features</li>
-                    <li>Increased online orders by 15% through strategic marketing campaigns during COVID</li>
-                  </ul>
-                </div>
+              <div className="work-responsibilities">
+                <h4>Key Responsibilities:</h4>
+                <ul>
+                  {selectedWork.responsibilities.slice(0, 4).map((responsibility, index) => (
+                    <li key={index}>{responsibility}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-
-                <div id="section-languages" className="intro-section">
-                  <h3>Languages</h3>
-                  <ul className="languages-list">
-                    <li>English - Native or Bilingual Proficiency</li>
-                    <li>Spanish - Native or Bilingual Proficiency</li>
-                    <li>Italian - Limited Working Proficiency</li>
-                  </ul>
-                </div>
+            <div className="work-technologies">
+              <h4>Technologies:</h4>
+              <div className="tech-tags">
+                {selectedWork.technologies.map((tech, index) => (
+                  <span key={index} className="tech-tag">{tech}</span>
+                ))}
               </div>
             </div>
           </div>
-          
-          <div className="intro-cards-right">
-            {['about', 'competencies', 'highlights', 'languages'].map((cardId) => (
-              <button 
-                key={cardId} 
-                className={`intro-nav-button ${expandedCard === cardId ? 'active' : ''}`}
-                onClick={() => handleCardClick(cardId)}
-              >
-                {cardId === 'about' && 'About Me'}
-                {cardId === 'competencies' && 'Core Competencies'}
-                {cardId === 'highlights' && 'Professional Highlights'}
-                {cardId === 'languages' && 'Languages'}
-              </button>
-            ))}
-          </div>
+        </div>
+
+        {/* Right side - Work selection buttons */}
+        <div className="intro-work-buttons">
+          {WORK_EXPERIENCE.map((work) => (
+            <button
+              key={work.id}
+              className={`work-button ${selectedWorkId === work.id ? 'active' : ''}`}
+              onClick={() => setSelectedWorkId(work.id)}
+            >
+              <div className="work-button-company">{work.company}</div>
+              <div className="work-button-position">{work.position}</div>
+              <div className="work-button-dates">{work.startDate} - {work.endDate}</div>
+            </button>
+          ))}
         </div>
       </div>
     </div>
