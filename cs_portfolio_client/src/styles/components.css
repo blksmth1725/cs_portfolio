@@ -22,14 +22,17 @@
 
 /* CSS Variables for header/footer heights */
 :root {
-  --header-height: 80px; /* 5rem */
-  --footer-height: 72px; /* Approximate footer height */
+  --header-height: 80px;
+  /* 5rem */
+  --footer-height: 72px;
+  /* Approximate footer height */
 }
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
   :root {
-    --header-height: 60px; /* Slightly smaller on mobile */
+    --header-height: 60px;
+    /* Slightly smaller on mobile */
     --footer-height: 68px;
   }
 }
@@ -51,7 +54,7 @@
 
 .header-container {
   width: 100%;
-  padding-left:  0.75rem;
+  padding-left: 0.75rem;
   padding-right: 0.75rem;
   display: flex;
   align-items: center;
@@ -78,6 +81,66 @@
   justify-content: space-between;
   align-items: center;
   height: 5rem;
+}
+
+/* Header Navigation */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  color: #14213D;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  background: rgba(46, 156, 160, 0.1);
+  color: #2E9CA0;
+}
+
+.nav-item.download-btn {
+  background: #2E9CA0;
+  color: white;
+  font-weight: 600;
+}
+
+.nav-item.download-btn:hover {
+  background: #26878b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 156, 160, 0.3);
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .header-nav {
+    gap: 1rem;
+  }
+
+  .nav-item {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-nav {
+    gap: 0.5rem;
+  }
+
+  .nav-item {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
 }
 
 .header-logo {
@@ -283,8 +346,8 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-
