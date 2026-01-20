@@ -178,7 +178,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    align-self: flex-end;
+    align-self: flex-start;
     margin-top: auto;
 }
 

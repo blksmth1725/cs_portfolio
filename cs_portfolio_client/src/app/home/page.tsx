@@ -13,10 +13,26 @@ type SectionType = 'introduction' | 'workExperience' | 'educationCertifications'
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState<SectionType>('introduction');
+  const [isFading, setIsFading] = useState(false);
+  const [displaySection, setDisplaySection] = useState<SectionType>('introduction');
 
   useEffect(() => {
     const handleSectionChange = (event: CustomEvent) => {
-      setActiveSection(event.detail as SectionType);
+      const newSection = event.detail as SectionType;
+      if (newSection !== displaySection) {
+        // Start fade out
+        setIsFading(true);
+
+        // After fade out completes, change section and fade in
+        setTimeout(() => {
+          setDisplaySection(newSection);
+          setActiveSection(newSection);
+          // Trigger fade in
+          setTimeout(() => {
+            setIsFading(false);
+          }, 10);
+        }, 200); // Match CSS transition duration
+      }
     };
 
     window.addEventListener('sectionChange', handleSectionChange as EventListener);
@@ -24,16 +40,16 @@ export default function HomePage() {
     return () => {
       window.removeEventListener('sectionChange', handleSectionChange as EventListener);
     };
-  }, []);
+  }, [displaySection]);
 
   const renderSectionContent = () => {
     return (
       <>
-        {activeSection === 'introduction' && <Introduction />}
-        {activeSection === 'workExperience' && <WorkExperience />}
-        {activeSection === 'educationCertifications' && <EducationCertifications />}
-        {activeSection === 'contact' && <Contact />}
-        {activeSection === 'projects' && <Projects />}
+        {displaySection === 'introduction' && <Introduction />}
+        {displaySection === 'workExperience' && <WorkExperience />}
+        {displaySection === 'educationCertifications' && <EducationCertifications />}
+        {displaySection === 'contact' && <Contact />}
+        {displaySection === 'projects' && <Projects />}
       </>
     );
   };
@@ -41,7 +57,7 @@ export default function HomePage() {
   return (
     <ProtectedRoute>
       <div className="home-page-container">
-        <div className="home-page-content-full">
+        <div className={`home-page-content-full ${isFading ? 'fade-out' : 'fade-in'}`}>
           {renderSectionContent()}
         </div>
       </div>

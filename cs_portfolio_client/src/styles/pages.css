@@ -72,6 +72,15 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   color: #000;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.home-page-content-full.fade-out {
+  opacity: 0;
+}
+
+.home-page-content-full.fade-in {
+  opacity: 1;
 }
 
 
