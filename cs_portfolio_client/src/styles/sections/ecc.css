@@ -1,0 +1,432 @@
+/* Education Layout */
+.education-layout {
+    display: grid;
+    grid-template-columns: .9fr 1fr;
+    gap: 1rem;
+    height: calc(103vh - var(--header-height) - var(--footer-height) - 2rem);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Right Column Container */
+.education-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+
+/* Top Row - Two Containers Side by Side (50% height) */
+.education-right-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    height: 50%;
+    min-height: 0;
+}
+
+/* Large Container - Main Education Card (Left Side - Full Height) */
+.education-main-card {
+    grid-column: 1;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    padding-right: 200px;
+    /* Make room for buttons */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.education-card-header {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.75rem;
+}
+
+.education-institution {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #14213D;
+    margin: 0 0 0.25rem 0;
+}
+
+.education-degree {
+    font-size: 1rem;
+    color: #2E9CA0;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.education-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.education-field {
+    font-weight: 600;
+    color: #14213D;
+}
+
+.education-status.completed {
+    background: #dcfce7;
+    color: #166534;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.education-status.in-progress {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.education-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.education-technologies {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 2px solid #e2e8f0;
+}
+
+.education-content-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.education-description {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.education-courses h4,
+.education-technologies h4,
+.education-gpa h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #14213D;
+    margin: 0 0 0.75rem 0;
+}
+
+.education-courses ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style-type: disc;
+}
+
+.education-courses li {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.gpa-value {
+    color: #2E9CA0;
+    font-weight: 700;
+}
+
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-tag {
+    background: #f0f9f9;
+    color: #2E9CA0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #e1f4f4;
+}
+
+/* Education Selection Buttons */
+.education-buttons {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 160px;
+    z-index: 10;
+}
+
+.education-button {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    font-size: 0.75rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 5.5rem;
+    max-height: 5rem;
+}
+
+.education-button:hover {
+    border-color: #2E9CA0;
+    box-shadow: 0 2px 8px rgba(46, 156, 160, 0.1);
+    transform: translateY(-1px);
+}
+
+.education-button.active {
+    border-color: #2E9CA0;
+    background: #f0f9f9;
+    box-shadow: 0 2px 8px rgba(46, 156, 160, 0.15);
+}
+
+.education-button-institution {
+    font-weight: 600;
+    color: #14213D;
+    font-size: 0.7rem;
+    margin-bottom: 0.125rem;
+}
+
+.education-button-degree {
+    font-size: 0.65rem;
+    color: #666;
+    margin-bottom: 0.125rem;
+}
+
+.education-button-dates {
+    font-size: 0.6rem;
+    color: #2E9CA0;
+    font-weight: 500;
+}
+
+/* Professional Highlights Card */
+.education-highlights-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Core Competencies Card */
+.education-competencies-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #14213D;
+    margin: 0 0 0.5rem 0;
+}
+
+.highlights-content,
+.competencies-content {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+}
+
+.highlights-list,
+.competencies-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: none;
+}
+
+.highlights-list li,
+.competencies-list li {
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    position: relative;
+    font-size: 0.875rem;
+}
+
+.competencies-list li {
+    line-height: 1.8;
+}
+
+.highlights-list li::before,
+.competencies-list li::before {
+    content: "▶";
+    color: #2E9CA0;
+    font-size: 0.7rem;
+    position: absolute;
+    left: -1.25rem;
+    top: 0.1rem;
+}
+
+/* Technical Skills Card - Bottom Right (50% height) */
+.education-skills-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: calc(50% - 0.5rem);
+    min-height: 0;
+}
+
+.skills-content {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    width: 100%;
+}
+
+.skill-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.skill-pill:hover {
+    border-color: #2E9CA0;
+    box-shadow: 0 2px 8px rgba(46, 156, 160, 0.1);
+    transform: translateY(-1px);
+}
+
+.skill-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #2E9CA0;
+    text-align: center;
+}
+
+.skill-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.star {
+    color: #e5e7eb;
+    font-size: 0.7rem;
+}
+
+.star.filled {
+    color: #FCA311;
+}
+
+.skill-score {
+    font-size: 0.65rem;
+    color: #2E9CA0;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .education-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: calc(100vh - var(--header-height) - var(--footer-height) - 2rem);
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .education-main-card {
+        grid-column: 1;
+        height: auto;
+        padding-right: 1.5rem;
+    }
+
+    .education-right-column {
+        height: auto;
+    }
+
+    .education-right-top {
+        grid-template-columns: 1fr;
+        flex: none;
+    }
+
+    .education-skills-card {
+        height: auto;
+    }
+
+    .education-buttons {
+        position: static;
+        flex-direction: row;
+        max-width: none;
+        margin-top: 1rem;
+        overflow-x: auto;
+    }
+
+    .education-button {
+        min-width: 150px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        justify-content: center;
+    }
+
+    .skill-pill {
+        min-width: 100px;
+    }
+}
