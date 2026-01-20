@@ -164,9 +164,9 @@
 }
 
 .user-menu-trigger {
-  background-color: #FCA311;
-  border: none;
-  color: #14213D;
+  background-color: #f0f9f9;
+  border: 1px solid #e1f4f4;
+  color: #2E9CA0;
   padding: 0.75rem;
   border-radius: 50%;
   cursor: pointer;
@@ -179,7 +179,9 @@
 .user-menu-trigger:hover,
 .user-menu-trigger.active {
   background-color: #2E9CA0;
-  color: #FFFFFF;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 156, 160, 0.2);
 }
 
 .dropdown-overlay {
