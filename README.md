@@ -111,3 +111,16 @@ The `users` table will be created automatically when the server starts.
 - MySQL with mysql2
 - JWT authentication
 - bcrypt password hashing
+
+## Production Deployment
+# 1 build
+npm run build
+
+# 2 delete any zips (both inside this folder and the parent)
+rm -f cs_portfolio_server.zip
+rm -f ../cs_portfolio_server.zip
+
+# 3 create the EB zip (ONLY runtime files)
+zip -r ../cs_portfolio_server.zip dist package.json package-lock.json \
+  -x "*.log" ".env" "dist/config/database.js" "dist/config/database.js.map" \
+     "dist/config/database.d.ts" "dist/config/database.d.ts.map"

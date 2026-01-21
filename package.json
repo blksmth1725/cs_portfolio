@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
-    "start": "concurrently \"npm run server:start\" \"npm run client:start\"",
-    "build": "npm run server:build && npm run client:build",
+    "build": "npm run client:build && npm run server:build",
+    "start": "npm run server:start",
     "server:dev": "cd cs_portfolio_server && npm run dev",
     "server:start": "cd cs_portfolio_server && npm start",
     "server:build": "cd cs_portfolio_server && npm run build",
     "client:dev": "cd cs_portfolio_client && npm run dev",
-    "client:start": "cd cs_portfolio_client && npm start",
     "client:build": "cd cs_portfolio_client && npm run build",
     "install:all": "npm install && cd cs_portfolio_server && npm install && cd ../cs_portfolio_client && npm install",
     "clean": "cd cs_portfolio_server && rm -rf node_modules dist && cd ../cs_portfolio_client && rm -rf node_modules .next"
