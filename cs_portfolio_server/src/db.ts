@@ -21,9 +21,9 @@ export async function ensureUsersTable(): Promise<void> {
       FROM INFORMATION_SCHEMA.TABLES 
       WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'users'
     `, [DATABASE_CONFIG.NAME]);
-    
-    const tableExists = (tables as Array<{TABLE_NAME: string}>).length > 0;
-    
+
+    const tableExists = (tables as Array<{ TABLE_NAME: string }>).length > 0;
+
     if (!tableExists) {
       // Create basic users table - will work with existing schema or create new one
       const createSql = `
