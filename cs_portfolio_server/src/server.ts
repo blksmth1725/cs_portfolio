@@ -1,3 +1,5 @@
+// Load environment variables FIRST using dotenv/config
+// This runs immediately when the module loads, before any other imports
 import 'dotenv/config';
 
 import express from 'express';
@@ -5,20 +7,55 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import path from 'path';
 
 import authRouter from './routes/auth';
 import contactRouter from './routes/contact';
 import { ensureUsersTable } from './db';
 
-// Load .env only in local/dev
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
+// Determine environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+// In development, try to load .env from server directory
+// dotenv/config looks in process.cwd(), but when running from project root via npm scripts,
+// we need to look in the cs_portfolio_server directory
+if (isDevelopment) {
+  const fs = require('fs');
+  const possiblePaths = [
+    path.resolve(process.cwd(), 'cs_portfolio_server/.env'),  // From project root (npm run dev)
+    path.resolve(process.cwd(), '.env'),                       // Current working directory
+    path.resolve(__dirname, '../.env'),                        // Relative to compiled dist folder
+    path.resolve(__dirname, '../../.env'),                     // If running from src folder
+  ];
+
+  // Check if DB_PASSWORD is already loaded, if not try loading from server directory
+  if (!process.env.DB_PASSWORD) {
+    for (const envPath of possiblePaths) {
+      if (fs.existsSync(envPath)) {
+        const result = dotenv.config({ path: envPath, override: false });
+        if (!result.error) {
+          console.log(`✓ Loaded .env from: ${envPath}`);
+          break;
+        }
+      }
+    }
+  }
+
+  // Debug: Show if DB_PASSWORD was loaded
+  console.log(`DB_PASSWORD loaded: ${!!process.env.DB_PASSWORD}`);
 }
 
 const app = express();
 
-// Elastic Beanstalk provides PORT (fallback to 8080)
-const PORT = Number.parseInt(process.env.PORT ?? '8080', 10);
+// Port configuration:
+// - Local dev: 5001 (default) - can be overridden with PORT env var
+// - Production (AWS EB): Use PORT from environment (defaults to 8080 for EB)
+const PORT = isDevelopment
+  ? Number.parseInt(process.env.PORT || '5001', 10)
+  : Number.parseInt(process.env.PORT || '8080', 10);
+
+console.log(`Environment: ${isDevelopment ? 'development' : 'production'}`);
+console.log(`Server port: ${PORT}`);
 
 // --------------------
 // Middleware

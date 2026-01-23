@@ -38,14 +38,13 @@
 }
 
 .intro-summary {
-    flex: 1;
     overflow-y: auto;
     max-height: none;
 }
 
 .intro-summary p {
     color: #666;
-    line-height: 1.65;
+    line-height: 1.52;
     margin: 0 0 1.5rem 0;
     font-size: .96rem;
 }
@@ -170,8 +169,8 @@
 .work-button {
     background: white;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 0.79rem 0.75rem;
+    border-radius: 10px;
+    padding: 0.72rem;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;

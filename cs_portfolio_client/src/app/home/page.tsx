@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Introduction from '@/components/Introduction';
-import WorkExperience from '@/components/WorkExperience';
 import EducationCertifications from '@/components/EducationCertifications';
 import Contact from '@/components/Contact';
 import Projects from '@/components/Projects';
@@ -46,7 +45,6 @@ export default function HomePage() {
     return (
       <>
         {displaySection === 'introduction' && <Introduction />}
-        {displaySection === 'workExperience' && <WorkExperience />}
         {displaySection === 'educationCertifications' && <EducationCertifications />}
         {displaySection === 'contact' && <Contact />}
         {displaySection === 'projects' && <Projects />}
