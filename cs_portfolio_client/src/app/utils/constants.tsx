@@ -273,6 +273,10 @@ export interface Project {
     description: string;
     longDescription: string;
     technologies: string[];
+    media: {
+        type: "image" | "video";
+        src: string;
+    }[];
     features: string[];
     githubUrl?: string;
     liveUrl?: string;
@@ -284,61 +288,54 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
     {
-        id: "portfolio-website",
-        title: "Personal Portfolio Website",
-        description: "Full-stack portfolio website built with Next.js and MySQL",
-        longDescription: "A comprehensive portfolio website showcasing my work experience, projects, and skills. Features include user authentication, responsive design, and dynamic content management.",
-        technologies: ["Next.js", "React", "TypeScript", "MySQL", "CSS3", "Node.js"],
+        id: "Social Media Platform",
+        title: "BLKSMTH.IO",
+        description: "Social Media Platform that allows users to share their thoughts and ideas with the world with a specific focus on work and career development.",
+        longDescription: "BLKSMTH.IO is a social media platform that allows users to share their thoughts and ideas with the world with a specific focus on work and career development. It is built with Next.js and React and uses the Vercel platform for deployment.",
+        technologies: ["React", "MongoDB", "Node.js", "Express.js", "JWT", "MERN Stack"],
         features: [
-            "Responsive design for all devices",
             "User authentication system",
             "Dynamic content management",
-            "Contact form with email integration",
+            "Social media features",
+            "Career development features",
             "Modern UI/UX design"
         ],
-        githubUrl: "https://github.com/blksmth1725/cs_portfolio",
+        media: [ {
+            type: "image",
+            src: "/SMP/1_SMP_LANDING_PAGE.png"
+        }, {
+            type: "image",
+            src: "/SMP/2_NEW_PROFILE.png"
+        }, {
+            type: "image",
+            src: "/SMP/3_UPDATE_PROFILE_INFO_NEW.png"
+        }, {
+            type: "image",
+            src: "/SMP/4_CREATED_PROFILES.png"
+        }, {
+            type: "image",
+            src: "/SMP/5_CREATING_POST.png"
+        }, {
+            type: "image",
+            src: "/SMP/6_POST_DISCUSSION.png"
+        }, {
+            type: "image",
+            src: "/SMP/6B_POST_DISCUSSION.png"
+        }, {
+            type: "video",
+            src: "/SMP/7_ADD_EXPERIENCE.mov"
+        }, {
+            type: "video",
+            src: "/SMP/8_SMP_NAVIGATION.mov"
+        }
+        ],
+        githubUrl: "https://github.com/blksmth1725/social-media-platform",
         liveUrl: "https://christiansheen.dev",
-        startDate: "2024",
-        endDate: "2024",
+        startDate: "01/2021",
+        endDate: "01/2021",
         status: "completed"
     },
-    {
-        id: "task-management-app",
-        title: "Task Management Application",
-        description: "React-based task management app with real-time updates",
-        longDescription: "A collaborative task management application that allows teams to create, assign, and track tasks in real-time. Built with modern React patterns and WebSocket integration.",
-        technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express.js", "JWT"],
-        features: [
-            "Real-time task updates",
-            "Team collaboration features",
-            "Drag-and-drop task organization",
-            "User authentication and authorization",
-            "Email notifications"
-        ],
-        githubUrl: "https://github.com/blksmth1725/task-manager",
-        startDate: "2023",
-        endDate: "2023",
-        status: "completed"
-    },
-    {
-        id: "e-commerce-platform",
-        title: "E-Commerce Platform",
-        description: "Full-stack e-commerce solution with payment integration",
-        longDescription: "A complete e-commerce platform with product catalog, shopping cart, payment processing, and admin dashboard. Includes inventory management and order tracking.",
-        technologies: ["Next.js", "Stripe", "PostgreSQL", "Prisma", "Tailwind CSS", "Vercel"],
-        features: [
-            "Product catalog with search and filtering",
-            "Shopping cart and checkout process",
-            "Stripe payment integration",
-            "Admin dashboard for inventory management",
-            "Order tracking and history"
-        ],
-        githubUrl: "https://github.com/blksmth1725/ecommerce-platform",
-        liveUrl: "https://shop-demo.christiansheen.dev",
-        startDate: "2023",
-        endDate: "2024",
-        status: "in-progress"
-    }
+    
 ];
 
 // Languages

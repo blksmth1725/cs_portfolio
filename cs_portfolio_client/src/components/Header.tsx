@@ -103,7 +103,7 @@ export default function Header() {
           <div className={`header-logo ${logoJiggling ? 'logo-jiggle' : ''}`}>
             <h1 className="header-logo-text">
               <img
-                src="/csa-folder-icon (1).svg"
+                src="/csaLogo.png"
                 alt="CSA"
                 className="header-logo-icon"
               />
