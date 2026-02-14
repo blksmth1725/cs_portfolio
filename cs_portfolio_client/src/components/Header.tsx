@@ -37,10 +37,16 @@ export default function Header() {
       setActiveSection(event.detail);
     };
 
-    window.addEventListener('sectionChange', handleSectionChange as EventListener);
+    window.addEventListener(
+      'sectionChange',
+      handleSectionChange as EventListener
+    );
 
     return () => {
-      window.removeEventListener('sectionChange', handleSectionChange as EventListener);
+      window.removeEventListener(
+        'sectionChange',
+        handleSectionChange as EventListener
+      );
     };
   }, []);
 
@@ -49,8 +55,10 @@ export default function Header() {
     if (isAuthenticated) {
       // Set Introduction as the default active section when signing in
       setActiveSection('introduction');
-      window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'introduction' }));
-      
+      window.dispatchEvent(
+        new CustomEvent('sectionChange', { detail: 'introduction' })
+      );
+
       // Small delay to allow transition to start
       const timer = setTimeout(() => {
         setLogoJiggling(true);
@@ -66,7 +74,9 @@ export default function Header() {
     const updateSliderPosition = () => {
       if (!navRef.current) return;
 
-      const activeButton = navRef.current.querySelector(`.nav-item.active`) as HTMLElement;
+      const activeButton = navRef.current.querySelector(
+        `.nav-item.active`
+      ) as HTMLElement;
       if (activeButton) {
         const navRect = navRef.current.getBoundingClientRect();
         const buttonRect = activeButton.getBoundingClientRect();
@@ -98,15 +108,13 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-container">
-        <div className={`header-content ${!isAuthenticated ? 'header-content-centered' : ''}`}>
+        <div
+          className={`header-content ${!isAuthenticated ? 'header-content-centered' : ''}`}
+        >
           {/* Logo */}
           <div className={`header-logo ${logoJiggling ? 'logo-jiggle' : ''}`}>
             <h1 className="header-logo-text">
-              <img
-                src="/csaLogo.png"
-                alt="CSA"
-                className="header-logo-icon"
-              />
+              <img src="/csaLogo.png" alt="CSA" className="header-logo-icon" />
               <span>/Portfolio</span>
             </h1>
           </div>
@@ -118,14 +126,16 @@ export default function Header() {
                 className={`nav-slider ${isJiggling ? 'jiggle' : ''}`}
                 style={{
                   left: `${sliderStyle.left}px`,
-                  width: `${sliderStyle.width}px`
+                  width: `${sliderStyle.width}px`,
                 }}
               />
               <button
                 className={`nav-item ${activeSection === 'introduction' ? 'active' : ''}`}
                 onClick={() => {
                   setActiveSection('introduction');
-                  window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'introduction' }));
+                  window.dispatchEvent(
+                    new CustomEvent('sectionChange', { detail: 'introduction' })
+                  );
                 }}
               >
                 Introduction
@@ -134,7 +144,11 @@ export default function Header() {
                 className={`nav-item ${activeSection === 'educationCertifications' ? 'active' : ''}`}
                 onClick={() => {
                   setActiveSection('educationCertifications');
-                  window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'educationCertifications' }));
+                  window.dispatchEvent(
+                    new CustomEvent('sectionChange', {
+                      detail: 'educationCertifications',
+                    })
+                  );
                 }}
               >
                 ED.PH.CC
@@ -143,7 +157,9 @@ export default function Header() {
                 className={`nav-item ${activeSection === 'contact' ? 'active' : ''}`}
                 onClick={() => {
                   setActiveSection('contact');
-                  window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'contact' }));
+                  window.dispatchEvent(
+                    new CustomEvent('sectionChange', { detail: 'contact' })
+                  );
                 }}
               >
                 Contact
@@ -152,7 +168,9 @@ export default function Header() {
                 className={`nav-item ${activeSection === 'projects' ? 'active' : ''}`}
                 onClick={() => {
                   setActiveSection('projects');
-                  window.dispatchEvent(new CustomEvent('sectionChange', { detail: 'projects' }));
+                  window.dispatchEvent(
+                    new CustomEvent('sectionChange', { detail: 'projects' })
+                  );
                 }}
               >
                 Projects
@@ -167,7 +185,7 @@ export default function Header() {
                 className="nav-item download-btn"
                 onClick={() => {
                   const link = document.createElement('a');
-                  link.href = '/assets/resume.pdf';
+                  link.href = '/public/CS_CV_2026.pdf';
                   link.download = 'Christian_Sheen_Resume.pdf';
                   link.click();
                 }}
@@ -203,12 +221,8 @@ export default function Header() {
                     ></div>
                     <div className="user-dropdown">
                       <div className="user-info">
-                        <div className="user-name">
-                          {user?.name || 'User'}
-                        </div>
-                        <div className="user-email">
-                          {user?.email || ''}
-                        </div>
+                        <div className="user-name">{user?.name || 'User'}</div>
+                        <div className="user-email">{user?.email || ''}</div>
                       </div>
                       <div className="dropdown-divider"></div>
                       <button
